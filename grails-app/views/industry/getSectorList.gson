@@ -1,0 +1,7 @@
+import fypapplication.Sector
+
+model {
+    Iterable<Sector> sectorList
+}
+
+json tmpl.sector(sectorList)

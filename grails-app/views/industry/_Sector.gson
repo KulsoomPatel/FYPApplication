@@ -1,0 +1,9 @@
+import fypapplication.Sector
+
+model {
+    Sector sector
+}
+
+json{
+    name sector.name
+}
