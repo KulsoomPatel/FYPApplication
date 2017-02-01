@@ -4,4 +4,9 @@ model {
     Iterable<Sector> sectorList
 }
 
-json tmpl.sector(sectorList)
+def list = []
+sectorList.each {
+
+    list.add(it.name)
+}
+ json(list)

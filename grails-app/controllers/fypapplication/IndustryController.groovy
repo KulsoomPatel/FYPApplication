@@ -10,7 +10,7 @@ class IndustryController {
 
     def getSectorList() {
 
-        def sectorList = sectorService.getIndustries()
+        def sectorList = sectorService.getSectors()
         respond sectorList
     }
 
