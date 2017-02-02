@@ -5,7 +5,7 @@
 angular.module("fypapplication.industry")
     .controller("IndustryController", IndustryController);
 
-function IndustryController(SectorFactory) {
+function IndustryController(SectorFactory, GetIndustries) {
 
     //Pass a list and post these values to begin
     var vm = this;
@@ -14,6 +14,13 @@ function IndustryController(SectorFactory) {
 
     SectorFactory.get().then(function (response) {
         vm.sectorList = response.data;
-    })
+    });
+
+    vm.getIndustryList = function (sectorName) {
+
+        GetIndustries.get().then(function (response) {
+            vm.industryList = response.data;
+        })
+    }
 
 }

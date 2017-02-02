@@ -3,19 +3,29 @@
  */
 angular.module("fypapplication.industry")
     .factory("IndustryDataFactory", IndustryDataFactory)
-    .factory("SectorFactory", SectorFactory);
+    .factory("SectorFactory", SectorFactory)
+    .factory("GetIndustries", GetIndustries);
 
 function IndustryDataFactory($http) {
     return {
-        get: function() {
+        get: function () {
             return $http({method: "GET", url: "industry/getIndustryData"});
         }
     }
 }
 
+function GetIndustries($http) {
+    return {
+        get: function () {
+            return $http({method: "GET", url: "industry/getIndustryList"});
+        }
+    }
+}
+
+
 function SectorFactory($http) {
-    return{
-        get:function () {
+    return {
+        get: function () {
             return $http({method: "GET", url: "industry/getSectorList"});
         }
     }

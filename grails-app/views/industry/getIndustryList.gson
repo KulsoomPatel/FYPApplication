@@ -1,0 +1,13 @@
+import fypapplication.Industry
+
+model{
+    Iterable<Industry> industryList
+}
+
+def list =[]
+
+industryList.each {
+    list.add(it.name)
+}
+
+json(list)

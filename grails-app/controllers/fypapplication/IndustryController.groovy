@@ -7,6 +7,8 @@ class IndustryController {
 
     def liveTwitterDataService
     def sectorService
+    def industryDataService
+
 
     def getSectorList() {
 
@@ -27,5 +29,11 @@ class IndustryController {
         int retailData = liveTwitterDataService.processData("retail")
 
         [accountingData: accountingData, teachingData: teachingData, engineeringData: engineeringData, retailData: retailData]
+    }
+
+    def getIndustryList(String sectorName) {
+        def industryList = industryDataService.getIndustriesToSector(sectorName)
+
+        respond industryList
     }
 }
