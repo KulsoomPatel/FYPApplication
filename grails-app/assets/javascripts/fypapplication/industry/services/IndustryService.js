@@ -16,8 +16,9 @@ function IndustryDataFactory($http) {
 
 function GetIndustries($http) {
     return {
-        get: function () {
-            return $http({method: "GET", url: "industry/getIndustryList"});
+        get: function (sectorName) {
+            return $http({method: "GET", url: "industry/getIndustryList?sectorName=" +sectorName});
+
         }
     }
 }

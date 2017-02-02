@@ -18,7 +18,7 @@ function IndustryController(SectorFactory, GetIndustries) {
 
     vm.getIndustryList = function (sectorName) {
 
-        GetIndustries.get().then(function (response) {
+        GetIndustries.get(sectorName).then(function (response) {
             vm.industryList = response.data;
         })
     }

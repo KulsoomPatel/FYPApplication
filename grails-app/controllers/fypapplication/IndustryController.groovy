@@ -32,6 +32,7 @@ class IndustryController {
     }
 
     def getIndustryList(String sectorName) {
+
         def industryList = industryDataService.getIndustriesToSector(sectorName)
 
         respond industryList
