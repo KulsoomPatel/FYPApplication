@@ -24,7 +24,7 @@
 
             <span ng-repeat="industry in ctrl.industryList">
           <label>
-            <input type="checkbox" id="industry" ng-model="oneIndustry" ng-change="ctrl.updateSelected(industry)">
+            <input type="checkbox" id="industry" ng-model="ctrl.oneIndustry" ng-change="ctrl.updateSelected(industry)">
             {{industry}}
           </label><br/>
         </span>

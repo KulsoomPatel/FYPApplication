@@ -27,9 +27,17 @@ function IndustryController(SectorFactory, GetIndustries) {
             vm.showSectorArea = true;
         })
     };
-    
+
     vm.updateSelected = function (industry) {
-        vm.industries.push(industry)
+        if (vm.oneIndustry) {
+
+            vm.industries.push(industry)
+        }
+        else{
+            vm.industries.pop(industry)
+        }
+
+
     }
 
 }
