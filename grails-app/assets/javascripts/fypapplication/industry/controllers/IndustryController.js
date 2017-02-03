@@ -11,6 +11,10 @@ function IndustryController(SectorFactory, GetIndustries) {
     var vm = this;
     vm.sectorList = [];
     vm.selected = undefined;
+    vm.showSectorArea = false;
+    vm.industries = [];
+    vm.oneIndustry = undefined;
+
 
     SectorFactory.get().then(function (response) {
         vm.sectorList = response.data;
@@ -20,7 +24,12 @@ function IndustryController(SectorFactory, GetIndustries) {
 
         GetIndustries.get(sectorName).then(function (response) {
             vm.industryList = response.data;
+            vm.showSectorArea = true;
         })
+    };
+    
+    vm.updateSelected = function (industry) {
+        vm.industries.push(industry)
     }
 
 }
