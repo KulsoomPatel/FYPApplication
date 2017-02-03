@@ -1,7 +1,7 @@
 <form class="form-horizontal">
     <div class="form-group">
         <label for="sectors" class="col-md-2 lead">Search Sectors:</label>
-        <div class="col-md-9">
+        <div class="col-md-10">
             <input name="sectors" id="sectors" type="text" placeholder="Enter a Sector" ng-model="ctrl.selected"
                    uib-typeahead="sector for sector in ctrl.sectorList | filter:$viewValue | limitTo:8"
                    class="form-control">
@@ -9,7 +9,6 @@
     </div>
 
     <div class="form-group">
-
         <button type="submit" class="btn btn-lg center-block" ng-click="ctrl.getIndustryList(ctrl.selected)">Search
             Industries
         </button>
@@ -17,28 +16,34 @@
     </div>
 </form>
 
-<div class="col-md-6">
-    <div class="panel panel-default" ng-show="ctrl.showSectorArea && ctrl.selected != undefined">
-        <div class="panel-heading"> Industries in the {{ctrl.selected}} Sector</div>
-        <div class="panel-body">
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default" ng-show="ctrl.selected">
+            <div class="panel-heading"> Industries in the {{ctrl.selected}} Sector</div>
+            <div class="panel-body">
 
             <span ng-repeat="industry in ctrl.industryList">
           <label>
-            <input type="checkbox" id="industry" ng-model="ctrl.oneIndustry" ng-change="ctrl.updateSelected(industry)">
+            <input type="checkbox"
+                   name="selectedIndustries[]"
+                   value="{{industry}}"
+                   ng-checked="ctrl.industries.indexOf(industry) > -1"
+                   ng-click="ctrl.toggleSelection(industry)">
             {{industry}}
           </label><br/>
         </span>
-
+            </div>
         </div>
     </div>
-</div>
 
-<div class="col-md-6">
-    <div class="panel panel-default" ng-show="ctrl.showSectorArea">
-        <div class="panel-heading"> Selected Industries</div>
-        <div class="panel-body">
-            <p ng-repeat="eachIndustry in ctrl.industries"> {{eachIndustry}}</p>
 
+    <div class="col-md-6">
+        <div class="panel panel-default" ng-show="ctrl.showSectorArea">
+            <div class="panel-heading"> Selected Industries</div>
+            <div class="panel-body">
+                <p ng-repeat="eachIndustry in ctrl.industries"> {{eachIndustry}}</p>
+
+            </div>
         </div>
     </div>
 </div>

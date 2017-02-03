@@ -13,7 +13,6 @@ function IndustryController(SectorFactory, GetIndustries) {
     vm.selected = undefined;
     vm.showSectorArea = false;
     vm.industries = [];
-    vm.oneIndustry = undefined;
 
 
     SectorFactory.get().then(function (response) {
@@ -28,16 +27,19 @@ function IndustryController(SectorFactory, GetIndustries) {
         })
     };
 
-    vm.updateSelected = function (industry) {
-        if (vm.oneIndustry) {
+    // Toggle selection for a given Industry
+    vm.toggleSelection = function toggleSelection(industry) {
+        var idx = vm.industries.indexOf(industry);
 
-            vm.industries.push(industry)
+        // Is currently selected
+        if (idx > -1) {
+            vm.industries.splice(idx, 1);
         }
-        else{
-            vm.industries.pop(industry)
+
+        // Is newly selected
+        else {
+            vm.industries.push(industry);
         }
-
-
-    }
+    };
 
 }
