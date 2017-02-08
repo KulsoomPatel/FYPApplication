@@ -8,6 +8,7 @@
 //= require /angular/angular-touch
 //= require /angular/angular-animate
 //= require /angular/ui-bootstrap-tpls
+//= require /angular/fypapplication/fypapplication.core
 //= require_self
 //= require routes
 //= require_tree services
@@ -15,4 +16,4 @@
 //= require_tree domain
 //= require_tree templates
 
-angular.module("fypapplication.industry", ["ngRoute", "ui.bootstrap", "ngAnimate", "ngTouch"]);
+angular.module("fypapplication.industry", ["ngRoute", "ui.bootstrap", "ngAnimate", "ngTouch", "fypapplication.core"]);

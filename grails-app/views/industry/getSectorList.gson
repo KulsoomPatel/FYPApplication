@@ -9,4 +9,6 @@ sectorList.each {
 
     list.add(it.name)
 }
- json(list)
+ json {
+     listOfSectors list
+ }

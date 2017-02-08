@@ -3,7 +3,7 @@
         <label for="sectors" class="col-md-2 lead">Search Sectors:</label>
         <div class="col-md-10">
             <input name="sectors" id="sectors" type="text" placeholder="Enter a Sector" ng-model="ctrl.selected"
-                   uib-typeahead="sector for sector in ctrl.sectorList | filter:$viewValue | limitTo:8"
+                   uib-typeahead="sector for sector in ctrl.sectorList.listOfSectors | filter:$viewValue | limitTo:8"
                    class="form-control">
         </div>
     </div>
@@ -36,7 +36,6 @@
         </div>
     </div>
 
-
     <div class="col-md-6">
         <div class="panel panel-default" ng-show="ctrl.showIndustryArea">
             <div class="panel-heading"> Selected Industries</div>
@@ -49,4 +48,6 @@
 </div>
 
 
-    <button type="button" class="btn btn-lg center-block" ng-show="ctrl.count > 0">Get Twitter Data</button>
+    <button type="button" class="btn btn-lg center-block" ng-show="ctrl.count > 0" ng-click="ctrl.getTwitterData()">Get Twitter Data</button>
+
+<p> {{ctrl.gettingData}}</p>

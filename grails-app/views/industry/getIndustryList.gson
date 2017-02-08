@@ -1,10 +1,10 @@
 import fypapplication.Industry
 
-model{
+model {
     Iterable<Industry> industryList
 }
 
-def list =[]
+def list = []
 
 industryList.each {
     list.add(it.name)

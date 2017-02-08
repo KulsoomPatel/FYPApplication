@@ -8,16 +8,14 @@ import twitter4j.StatusDeletionNotice
 import twitter4j.StatusListener
 import twitter4j.TwitterStream
 import twitter4j.TwitterStreamFactory
-
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 @Transactional
 class LiveTwitterDataService {
 
-    def getIndustryData() {
+    def getIndustryData(String [] theIndustries) {
 
-        def values = ["accounting", "teaching", "engineering", "retail"] as String
         PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("result.txt")))
 
         //Listens to Twitter statuses and carries out the following methods on the status
@@ -60,7 +58,7 @@ class LiveTwitterDataService {
 
         FilterQuery fq = new FilterQuery()
 
-        fq.track(values)
+        fq.track(theIndustries)
 
         stream.filter(fq)
 

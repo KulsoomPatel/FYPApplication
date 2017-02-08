@@ -5,7 +5,7 @@
 angular.module("fypapplication.industry")
     .controller("IndustryController", IndustryController);
 
-function IndustryController(SectorFactory, GetIndustries) {
+function IndustryController(SectorFactory, IndustryFactory) {
 
     //Pass a list and post these values to begin
     var vm = this;
@@ -14,8 +14,11 @@ function IndustryController(SectorFactory, GetIndustries) {
     vm.showIndustryArea = false;
     vm.industries = [];
 
-
-
+    vm.getTwitterData = function () {
+        IndustryFactory.show({theIndustries: vm.industries, action: 'getIndustryData'}, function (response) {
+            vm.gettingData = response.searchStatus;
+        })
+    };
 
     SectorFactory.get().then(function (response) {
         vm.sectorList = response.data;
@@ -23,12 +26,13 @@ function IndustryController(SectorFactory, GetIndustries) {
 
     vm.getIndustryList = function (sectorName) {
 
-        GetIndustries.get(sectorName).then(function (response) {
-            vm.industryList = response.data;
+        IndustryFactory.list({sectorName: sectorName, action: 'getIndustryList'}, function (list) {
+            vm.industryList = list;
             vm.showIndustryArea = true;
             vm.sectorName = vm.selected;
         })
     };
+
 
     // Toggle selection for a given Industry
     vm.toggleSelection = function toggleSelection(industry) {
