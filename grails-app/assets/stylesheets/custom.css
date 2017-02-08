@@ -1,0 +1,17 @@
+.custom-navbar {
+    color: #000000;
+}
+
+.custom-navbar:hover {
+    color: #000000;
+}
+
+.nav-tabs > li, .nav-pills > li {
+    float: none;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.nav-tabs {
+    text-align: center;
+}
