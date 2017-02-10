@@ -3,18 +3,16 @@ package fypapplication
 import grails.rest.*
 import grails.converters.*
 
-import java.lang.reflect.Array
-
 class IndustryController {
 
     def liveTwitterDataService
-    def sectorService
+    def sectorDataService
     def industryDataService
 
 //returns a list of all sectors
     def getSectorList() {
 
-        def sectorList = sectorService.getSectors()
+        def sectorList = sectorDataService.getSectors()
         respond sectorList
     }
 

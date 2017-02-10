@@ -17,11 +17,12 @@
 
 
     <ul class="nav nav-tabs">
-        <li><a href="#industry/getSectorList" class="custom-navbar">Create</a></li>
-        <li><a href="http://www.w3schools.com" class="custom-navbar">Hello, World</a></li>
+        <li><a href="#/liveData" class="custom-navbar">Live Data</a></li>
+        <li><a href="#/insertData" class="custom-navbar">Insert Data</a></li>
         <li><a href="http://www.w3schools.com" class="custom-navbar">Bye World</a></li>
     </ul>
 
+    </br>
 
     <div ng-view>
 

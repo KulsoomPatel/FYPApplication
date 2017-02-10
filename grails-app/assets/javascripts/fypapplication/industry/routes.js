@@ -4,7 +4,7 @@
 angular.module("fypapplication.industry")
     .config(function($routeProvider) {
         $routeProvider.
-        when('/', {
+        when('/liveData', {
             templateUrl: "/fypapplication/industry/ShowIndustryData.html",
             controller: "IndustryController as ctrl"
         })
