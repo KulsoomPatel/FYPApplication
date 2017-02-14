@@ -11,10 +11,10 @@ class SectorDataService {
 
     }
 
-    def saveSector(String sectorName) {
+    def saveSector(Sector newSector) {
 
         def message
-        Sector newSector = new Sector(name: sectorName)
+
         if (newSector.validate()) {
             newSector.save(flush: true)
             message = newSector.name + " has been saved"

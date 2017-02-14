@@ -1,6 +1,5 @@
 package fypapplication
 
-
 import grails.rest.*
 import grails.converters.*
 
@@ -8,9 +7,9 @@ class DataController {
 
     def sectorDataService
 
-    def saveSector(String sectorName) {
+    def saveSector(Sector newSector) {
 
-        def message = sectorDataService.saveSector(sectorName)
+        def message = sectorDataService.saveSector(newSector)
 
         render message
     }
