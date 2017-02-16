@@ -1,10 +1,10 @@
 /**
  * Created by Kulsoom on 09/02/2017.
  */
-angular.module("fypapplication.data")
-    .controller("DataController", DataController);
+angular.module("fypapplication.sectordata")
+    .controller("SectorDataController", SectorDataController);
 
-function DataController(SectorFactory, DataFactory) {
+function SectorDataController(SectorFactory, SectorDataFactory) {
 
     var vm = this;
     SectorFactory.get().then(function (response) {
@@ -15,7 +15,7 @@ function DataController(SectorFactory, DataFactory) {
 
     vm.saveTheSector = function () {
 
-        DataFactory.save({action: 'saveSector'}, vm.sector, function (res) {
+        SectorDataFactory.save({action: 'saveSector'}, vm.sector, function (res) {
             vm.responseMessage = res.message;
         })
     };

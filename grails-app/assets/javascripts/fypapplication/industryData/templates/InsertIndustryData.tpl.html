@@ -1,0 +1,19 @@
+<form class="form-horizontal">
+    <div class="form-group">
+        <label for="sectors" class="col-md-2 lead">Search Sectors:</label>
+        <div class="col-md-10">
+            <input name="sectors" id="sectors" type="text" placeholder="Enter a Sector" ng-model="ctrl.selected"
+                   uib-typeahead="sector for sector in ctrl.sectorList.listOfSectors | filter:$viewValue | limitTo:8"
+                   class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-lg center-block">Search
+            Industries
+        </button>
+
+    </div>
+</form>
+
+

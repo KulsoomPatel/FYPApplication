@@ -7,15 +7,16 @@
 //= require /fypapplication/core/fypapplication.core
 //= require /fypapplication/index/fypapplication.index
 //= require /fypapplication/industry/fypapplication.industry
-//= require /fypapplication/data/fypapplication.data
-
+//= require /fypapplication/sectorData/fypapplication.sectordata
+//= require /fypapplication/industryData/fypapplication.industrydata
 
 angular.module("fypapplication", [
     "ngRoute",
     "ui.bootstrap",
     "fypapplication.core",
     "fypapplication.industry",
-    "fypapplication.data",
+    "fypapplication.sectordata",
+    "fypapplication.industrydata",
     "ui.bootstrap",
     "ngAnimate",
     "ngTouch"

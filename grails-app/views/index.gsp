@@ -15,14 +15,13 @@
     </div>
 
 
-
     <ul class="nav nav-tabs">
         <li><a href="#/liveData" class="custom-navbar">Live Data</a></li>
-        <li><a href="#/insertData" class="custom-navbar">Insert Data</a></li>
-        <li><a href="http://www.w3schools.com" class="custom-navbar">Bye World</a></li>
+        <li><a href="#/insertSectorData" class="custom-navbar">Sector Data</a></li>
+        <li><a href="#/insertIndustryData" class="custom-navbar">Industry Data</a></li>
     </ul>
 
-    </br>
+</br>
 
     <div ng-view>
 

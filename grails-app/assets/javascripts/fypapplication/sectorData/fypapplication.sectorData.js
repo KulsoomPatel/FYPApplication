@@ -14,4 +14,4 @@
 //= require_tree domain
 //= require_tree templates
 
-angular.module("fypapplication.data", ["ngRoute", "fypapplication.core", "fypapplication.industry"]);
+angular.module("fypapplication.sectordata", ["ngRoute", "fypapplication.core", "fypapplication.industry"]);
