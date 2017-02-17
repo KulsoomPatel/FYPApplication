@@ -11,6 +11,15 @@ class SectorDataService {
 
     }
 
+    def getSectorByName(String sectorName) {
+
+        def query = Sector.where {
+            name == sectorName
+        }
+        def theSector = query.find()
+        return theSector
+    }
+
     def saveSector(Sector newSector) {
 
         def message

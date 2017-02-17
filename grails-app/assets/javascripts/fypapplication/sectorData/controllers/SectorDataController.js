@@ -14,9 +14,6 @@ function SectorDataController(SectorFactory, SectorDataFactory) {
     vm.sector = undefined;
 
     vm.saveTheSector = function () {
-
-        SectorDataFactory.save({action: 'saveSector'}, vm.sector, function (res) {
-            vm.responseMessage = res.message;
-        })
+        SectorDataFactory.save({action: 'saveSector'}, vm.sector)
     };
 }
