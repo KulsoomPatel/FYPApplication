@@ -4,10 +4,4 @@ model {
     Iterable<Industry> industryList
 }
 
-def list = []
-
-industryList.each {
-    list.add(it.name)
-}
-
-json(list)
+json tmpl.industry(industryList ?: [])

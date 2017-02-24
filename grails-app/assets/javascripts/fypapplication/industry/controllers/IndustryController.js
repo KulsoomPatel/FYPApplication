@@ -5,7 +5,7 @@
 angular.module("fypapplication.industry")
     .controller("IndustryController", IndustryController);
 
-function IndustryController(SectorFactory, IndustryFactory) {
+function IndustryController(IndustryFactory) {
 
     //Pass a list and post these values to begin
     var vm = this;
@@ -20,23 +20,28 @@ function IndustryController(SectorFactory, IndustryFactory) {
         })
     };
 
-    SectorFactory.get().then(function (response) {
-        vm.sectorList = response.data;
+    IndustryFactory.list({action: 'getSectorList'}, function (response) {
+        vm.sectorList = response;
     });
+
 
     vm.getIndustryList = function (sectorName) {
 
-        IndustryFactory.list({sectorName: sectorName, action: 'getIndustryList'}, function (list) {
-            vm.industryList = list;
-            vm.showIndustryArea = true;
-            vm.sectorName = vm.selected;
+        IndustryFactory.list({sectorName: sectorName, action: 'getIndustryList'}, function (res) {
+
+            if (res) {
+                vm.industryList = res;
+                vm.showIndustryArea = true;
+                vm.sectorName = vm.selected;
+            }
+        }, function () {
+            vm.errorMsg = "No industries found in " + vm.selected;
         })
     };
 
-
     // Toggle selection for a given Industry
     vm.toggleSelection = function toggleSelection(industry) {
-        var idx = vm.industries.indexOf(industry);
+        var idx = vm.industries.indexOf(industry.name);
 
         // Is currently selected
         if (idx > -1) {
@@ -46,7 +51,7 @@ function IndustryController(SectorFactory, IndustryFactory) {
 
         // Is newly selected
         else {
-            vm.industries.push(industry);
+            vm.industries.push(industry.name);
             vm.count = vm.industries.length;
         }
     };

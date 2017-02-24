@@ -8,15 +8,15 @@ class SectorDataService {
     def getSectors() {
 
         def sectors = Sector.list()
-
+        return sectors
     }
 
     def getSectorByName(String sectorName) {
 
-        def query = Sector.where {
+        def theSector = Sector.where {
             name == sectorName
-        }
-        def theSector = query.find()
+        }.get()
+
         return theSector
     }
 

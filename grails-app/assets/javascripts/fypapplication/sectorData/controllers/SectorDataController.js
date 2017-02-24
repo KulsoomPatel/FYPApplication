@@ -4,11 +4,11 @@
 angular.module("fypapplication.sectordata")
     .controller("SectorDataController", SectorDataController);
 
-function SectorDataController(SectorFactory, SectorDataFactory) {
+function SectorDataController(SectorDataFactory, IndustryFactory) {
 
     var vm = this;
-    SectorFactory.get().then(function (response) {
-        vm.sectorList = response.data;
+    IndustryFactory.list({action: 'getSectorList'}, function (response) {
+        vm.sectorList = response;
     });
 
     vm.sector = undefined;

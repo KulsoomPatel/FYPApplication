@@ -3,7 +3,7 @@
         <label for="sectors" class="col-md-2 lead">Search Sectors:</label>
         <div class="col-md-10">
             <input name="sectors" id="sectors" type="text" placeholder="Enter a Sector" ng-model="ctrl.selected"
-                   uib-typeahead="sector for sector in ctrl.sectorList.listOfSectors | filter:$viewValue | limitTo:8"
+                   uib-typeahead="sector.name for sector in ctrl.sectorList| filter:$viewValue | limitTo:8"
                    class="form-control">
         </div>
     </div>
@@ -16,6 +16,8 @@
     </div>
 </form>
 
+<p> {{ctrl.errorMsg}}</p>
+
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default" ng-show="ctrl.showIndustryArea">
@@ -26,10 +28,10 @@
           <label>
             <input type="checkbox"
                    name="selectedIndustries[]"
-                   value="{{industry}}"
-                   ng-checked="ctrl.industries.indexOf(industry) > -1"
+                   value="{{industry.name}}"
+                   ng-checked="ctrl.industries.indexOf(industry.name) > -1"
                    ng-click="ctrl.toggleSelection(industry)">
-            {{industry}}
+            {{industry.name}}
           </label><br/>
         </span>
             </div>
@@ -48,6 +50,8 @@
 </div>
 
 
-    <button type="button" class="btn btn-lg center-block" ng-show="ctrl.count > 0" ng-click="ctrl.getTwitterData()">Get Twitter Data</button>
+<button type="button" class="btn btn-lg center-block" ng-show="ctrl.count > 0" ng-click="ctrl.getTwitterData()">Get
+    Twitter Data
+</button>
 
 <p> {{ctrl.gettingData}}</p>

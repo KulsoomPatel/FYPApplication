@@ -5,14 +5,15 @@
 angular.module("fypapplication.industrydata")
     .controller("IndustryDataController", IndustryDataController);
 
-function IndustryDataController(SectorFactory, IndustryFactory, SectorDataFactory) {
+function IndustryDataController(IndustryFactory, SectorDataFactory) {
     var vm = this;
 
     vm.selected = undefined;
     vm.showIndustryArea = false;
     vm.industry = undefined;
-    SectorFactory.get().then(function (response) {
-        vm.sectorList = response.data;
+
+    IndustryFactory.list({action: 'getSectorList'}, function (response) {
+        vm.sectorList = response;
     });
 
     vm.getIndustryList = function (sectorName) {
@@ -20,19 +21,16 @@ function IndustryDataController(SectorFactory, IndustryFactory, SectorDataFactor
         IndustryFactory.list({sectorName: sectorName, action: 'getIndustryList'}, function (list) {
             vm.industryList = list;
             vm.showIndustryArea = true;
-            vm.sectorName = vm.selected;
         })
     };
 
     vm.saveTheIndustry = function () {
 
-        SectorDataFactory.show({
-            action: "getSector",
-            sectorName: vm.sectorName
-        }, function (theSector) {
-            vm.industry.sector= theSector
+        SectorDataFactory.get({action: 'getSector', sectorName: vm.selected}, function (response) {
+            vm.data = response
         });
 
+        vm.industry.sector = vm.data.sector;
         SectorDataFactory.save({action: 'saveIndustry'}, vm.industry, function (res) {
             vm.responseMessage = res.message;
         })

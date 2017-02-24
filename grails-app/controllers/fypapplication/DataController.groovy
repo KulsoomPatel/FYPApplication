@@ -16,9 +16,9 @@ class DataController {
     }
 
     def getSector(String sectorName) {
-        def theSector = sectorDataService.getSectorByName(sectorName)
+        Sector theSector = sectorDataService.getSectorByName(sectorName)
 
-        render theSector
+        render theSector, view: 'getSector'
     }
 
     def saveIndustry(Industry newIndustry) {

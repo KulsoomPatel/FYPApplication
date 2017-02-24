@@ -3,7 +3,7 @@
         <label for="sectors" class="col-md-2 lead">Search Sectors:</label>
         <div class="col-md-10">
             <input name="sectors" id="sectors" type="text" placeholder="Enter a Sector" ng-model="ctrl.selected"
-                   uib-typeahead="sector for sector in ctrl.sectorList.listOfSectors | filter:$viewValue | limitTo:8"
+                   uib-typeahead="sector.name for sector in ctrl.sectorList | filter:$viewValue | limitTo:8"
                    class="form-control">
         </div>
     </div>
@@ -25,7 +25,7 @@
                 <ul ng-repeat="industry in ctrl.industryList">
 
 
-                    <li>{{industry}}</li>
+                    <li>{{industry.name}}</li>
 
 
                 </ul>

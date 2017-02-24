@@ -1,0 +1,7 @@
+import fypapplication.Industry
+
+model {
+    Industry industry
+}
+
+json g.render(industry)

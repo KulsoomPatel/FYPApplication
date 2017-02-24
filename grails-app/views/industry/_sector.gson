@@ -1,0 +1,7 @@
+import fypapplication.Sector
+
+model {
+    Sector sector
+}
+
+json g.render(sector)

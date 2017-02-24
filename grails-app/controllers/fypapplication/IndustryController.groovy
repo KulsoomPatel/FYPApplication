@@ -13,7 +13,8 @@ class IndustryController {
     def getSectorList() {
 
         def sectorList = sectorDataService.getSectors()
-        respond sectorList
+
+        respond sectorList, model: [sectorCount: sectorList.size()]
     }
 
 //sends a list of filter queries to Twitter when getting live data
@@ -51,6 +52,7 @@ class IndustryController {
 
         def industryList = industryDataService.getIndustriesToSector(sectorName)
 
-        respond industryList
+        respond industryList, view: 'industryList', model: [industryCount: industryList.size()]
     }
 }
+
