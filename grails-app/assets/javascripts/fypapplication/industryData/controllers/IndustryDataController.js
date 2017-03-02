@@ -24,15 +24,19 @@ function IndustryDataController(IndustryFactory, SectorDataFactory) {
         })
     };
 
-    vm.saveTheIndustry = function () {
-
+    vm.getTheSector = function () {
         SectorDataFactory.get({action: 'getSector', sectorName: vm.selected}, function (response) {
-            vm.data = response
+            vm.industry.sector = response.theSector;
+
+            vm.saveTheIndustry()
         });
 
-        vm.industry.sector = vm.data.sector;
-        SectorDataFactory.save({action: 'saveIndustry'}, vm.industry, function (res) {
-            vm.responseMessage = res.message;
-        })
+
+    };
+
+    vm.saveTheIndustry = function () {
+        SectorDataFactory.save({action: 'saveIndustry'}, vm.industry, function (response) {
+            vm.responseMessage = response.theMessage;
+        });
     };
 }

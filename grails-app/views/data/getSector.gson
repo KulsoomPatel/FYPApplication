@@ -2,7 +2,9 @@ import fypapplication.Sector
 
 model {
 
-    Sector theSector
+    Sector sector
 }
 
-json g.render(theSector)
+json {
+   theSector g.render(sector)
+}

@@ -17,9 +17,16 @@ class IndustryDataService {
 
     def insertIndustry(Industry newIndustry) {
 
+        def message
+
         if (newIndustry.validate()) {
             newIndustry.save(flush: true)
+            message = newIndustry.name + " has been saved"
+        } else {
+            message = newIndustry.name + " is not valid"
         }
+
+        return message
     }
 }
 

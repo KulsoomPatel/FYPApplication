@@ -39,6 +39,8 @@
             <!-- Default panel contents -->
             <div class="panel-heading">Insert Industry</div>
             <div class="panel-body">
+
+                <p> {{ctrl.responseMessage}}</p>
                 <form>
                     <div class="form-group">
                         <label for="insertIndustry">Industry</label>
@@ -46,10 +48,11 @@
                                placeholder="Insert Industry">
                     </div>
 
-                    <button type="submit" class="btn btn-default center-block" ng-click="ctrl.saveTheIndustry()">Save
+                    <button type="submit" class="btn btn-default center-block" ng-click="ctrl.getTheSector()">Save
                         Industry
                     </button>
                 </form>
+
             </div>
         </div>
 

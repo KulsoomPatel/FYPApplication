@@ -1,7 +1,7 @@
 model {
-    String message
+    String string
 }
 
 json {
-    message message
+    theMessage string
 }

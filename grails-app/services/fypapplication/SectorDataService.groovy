@@ -13,7 +13,7 @@ class SectorDataService {
 
     def getSectorByName(String sectorName) {
 
-        def theSector = Sector.where {
+        Sector theSector = Sector.where {
             name == sectorName
         }.get()
 
@@ -22,7 +22,7 @@ class SectorDataService {
 
     def saveSector(Sector newSector) {
 
-        def message
+        String message
 
         if (newSector.validate()) {
             newSector.save(flush: true)

@@ -8,13 +8,15 @@ import twitter4j.StatusDeletionNotice
 import twitter4j.StatusListener
 import twitter4j.TwitterStream
 import twitter4j.TwitterStreamFactory
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 @Transactional
 class LiveTwitterDataService {
 
-    def getIndustryData(String [] theIndustries) {
+    def getIndustryData(String[] theIndustries) {
 
         PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("result.txt")))
 
@@ -52,6 +54,10 @@ class LiveTwitterDataService {
 
             }
         }
+
+        ExecutorService service = Executors.newSingleThreadExecutor()
+
+        
 
         TwitterStream stream = new TwitterStreamFactory().getInstance()
         stream.addListener(listener)

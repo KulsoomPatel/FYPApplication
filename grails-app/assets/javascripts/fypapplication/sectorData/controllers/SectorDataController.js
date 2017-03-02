@@ -7,13 +7,15 @@ angular.module("fypapplication.sectordata")
 function SectorDataController(SectorDataFactory, IndustryFactory) {
 
     var vm = this;
-    IndustryFactory.list({action: 'getSectorList'}, function (response) {
-        vm.sectorList = response;
+    IndustryFactory.list({action: 'getSectorList'}, function (saveMessage) {
+        vm.sectorList = saveMessage;
     });
 
     vm.sector = undefined;
 
     vm.saveTheSector = function () {
-        SectorDataFactory.save({action: 'saveSector'}, vm.sector)
+        SectorDataFactory.save({action: 'saveSector'}, vm.sector, function (response) {
+            vm.responseMessage = response.theMessage;
+        })
     };
 }

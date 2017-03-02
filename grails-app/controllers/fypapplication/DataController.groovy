@@ -10,19 +10,21 @@ class DataController {
 
     def saveSector(Sector newSector) {
 
-        def message = sectorDataService.saveSector(newSector)
+        String message = sectorDataService.saveSector(newSector)
 
-        render message
+        respond message
     }
 
     def getSector(String sectorName) {
-        Sector theSector = sectorDataService.getSectorByName(sectorName)
+        def theSector = sectorDataService.getSectorByName(sectorName)
 
-        render theSector, view: 'getSector'
+        respond theSector
     }
 
     def saveIndustry(Industry newIndustry) {
 
-        industryDataService.insertIndustry(newIndustry)
+        String message = industryDataService.insertIndustry(newIndustry)
+
+        respond message
     }
 }
