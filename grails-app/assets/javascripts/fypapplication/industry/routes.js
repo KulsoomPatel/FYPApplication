@@ -7,5 +7,10 @@ angular.module("fypapplication.industry")
         when('/liveData', {
             templateUrl: "/fypapplication/industry/ShowIndustryData.html",
             controller: "IndustryController as ctrl"
+        }).
+
+        when('/processData', {
+            templateUrl: "/fypapplication/industry/ProcessPage.html",
+            controller: "IndustryController as ctrl"
         })
     });

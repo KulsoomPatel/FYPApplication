@@ -22,18 +22,8 @@ class IndustryController {
 
         String[] theIndustries = params.list("theIndustries")
 
-        def messageStatus
 
-        if (theIndustries != null) {
-
-            liveTwitterDataService.getIndustryData(theIndustries)
-            messageStatus = "Success! Writing Twitter Data to file"
-
-        } else {
-            messageStatus = "An Error Occurred! Unable to wirte data"
-
-        }
-        respond messageStatus
+        liveTwitterDataService.getIndustryData(theIndustries)
 
     }
 

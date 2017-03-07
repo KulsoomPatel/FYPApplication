@@ -8,8 +8,14 @@ import twitter4j.StatusDeletionNotice
 import twitter4j.StatusListener
 import twitter4j.TwitterStream
 import twitter4j.TwitterStreamFactory
+
+import java.util.concurrent.Callable
+import java.util.concurrent.ExecutionException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import java.util.concurrent.Future
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -19,6 +25,7 @@ class LiveTwitterDataService {
     def getIndustryData(String[] theIndustries) {
 
         PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("result.txt")))
+        String message
 
         //Listens to Twitter statuses and carries out the following methods on the status
         StatusListener listener = new StatusListener() {
@@ -55,18 +62,39 @@ class LiveTwitterDataService {
             }
         }
 
-        ExecutorService service = Executors.newSingleThreadExecutor()
-
-        
 
         TwitterStream stream = new TwitterStreamFactory().getInstance()
-        stream.addListener(listener)
+        ExecutorService executor = Executors.newSingleThreadExecutor()
 
-        FilterQuery fq = new FilterQuery()
+        Future<String> future = executor.submit(new Callable<String>() {
+            @Override
+            String call() throws Exception {
 
-        fq.track(theIndustries)
 
-        stream.filter(fq)
+                stream.addListener(listener)
+
+                FilterQuery fq = new FilterQuery()
+
+                fq.track(theIndustries)
+
+                stream.filter(fq)
+
+
+            }
+        })
+
+        try {
+
+            future.get(2, TimeUnit.MINUTES)
+
+        } catch (TimeoutException e) {
+            future.cancel(true)
+            executor.shutdown()
+            stream.removeListener(listener)
+            stream.shutdown()
+
+        }
+
 
     }
 
