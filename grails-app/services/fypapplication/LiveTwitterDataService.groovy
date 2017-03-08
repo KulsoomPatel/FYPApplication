@@ -32,7 +32,8 @@ class LiveTwitterDataService {
             @Override
             void onStatus(Status status) {
 
-                printWriter.write(status.getText())
+                printWriter.write(status.getLang() + "|||" + status.getText())
+                printWriter.println()
 
             }
 
@@ -64,6 +65,9 @@ class LiveTwitterDataService {
 
 
         TwitterStream stream = new TwitterStreamFactory().getInstance()
+        stream.addListener(listener)
+        FilterQuery fq = new FilterQuery()
+        fq.track(theIndustries)
         ExecutorService executor = Executors.newSingleThreadExecutor()
 
         Future<String> future = executor.submit(new Callable<String>() {
@@ -71,15 +75,9 @@ class LiveTwitterDataService {
             String call() throws Exception {
 
 
-                stream.addListener(listener)
-
-                FilterQuery fq = new FilterQuery()
-
-                fq.track(theIndustries)
-
                 stream.filter(fq)
 
-
+                return null
             }
         })
 
@@ -88,14 +86,12 @@ class LiveTwitterDataService {
             future.get(2, TimeUnit.MINUTES)
 
         } catch (TimeoutException e) {
+
             future.cancel(true)
             executor.shutdown()
             stream.removeListener(listener)
             stream.shutdown()
-
         }
-
-
     }
 
     def processData(String type) {
