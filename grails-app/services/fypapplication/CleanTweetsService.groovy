@@ -1,6 +1,5 @@
 package fypapplication
 
-import emoji4j.EmojiUtils
 import grails.transaction.Transactional
 
 @Transactional
@@ -22,12 +21,14 @@ class CleanTweetsService {
                 String line = console.nextLine();
 
                 String[] splitter = line.split("\\|\\|\\|")
-
+                //Only looks at the english tweets
                 if (splitter[0] == "en") {
 
                     line = line.replaceFirst("en", "")
 
                     String urlIdentifier = "((http|ftp|https):\\/\\/)?[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?"
+
+                    //Removes URL's, RT, Twitter usernames and any non alpha numeric character
                     String[] removeNoise = ["RT", urlIdentifier, "(?:\\s|\\A)[@]+([A-Za-z0-9-_]+)", "[^a-zA-Z0-9 ]"]
 
                     removeNoise.each { noise ->
@@ -46,4 +47,6 @@ class CleanTweetsService {
         } catch (IOException e) {
         }
     }
+
+
 }

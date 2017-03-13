@@ -25,7 +25,6 @@ class LiveTwitterDataService {
     def getIndustryData(String[] theIndustries) {
 
         PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("result.txt")))
-        String message
 
         //Listens to Twitter statuses and carries out the following methods on the status
         StatusListener listener = new StatusListener() {
@@ -34,7 +33,6 @@ class LiveTwitterDataService {
 
                 printWriter.write(status.getLang() + "|||" + status.getText())
                 printWriter.println()
-
             }
 
             @Override
