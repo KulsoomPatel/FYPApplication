@@ -12,4 +12,10 @@ class ProcessController {
 
         cleanTweetsService.cleanTweets()
     }
+
+    def annotateTweets() {
+
+        cleanTweetsService.findSentiment()
+
+    }
 }

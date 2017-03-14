@@ -1,5 +1,10 @@
 package fypapplication
 
+import edu.stanford.nlp.ling.CoreAnnotations
+import edu.stanford.nlp.pipeline.Annotation
+import edu.stanford.nlp.pipeline.StanfordCoreNLP
+import edu.stanford.nlp.sentiment.SentimentCoreAnnotations
+import edu.stanford.nlp.util.CoreMap
 import grails.transaction.Transactional
 
 @Transactional
@@ -48,5 +53,45 @@ class CleanTweetsService {
         }
     }
 
+    def findSentiment() {
 
+        File cleanTweets = new File("cleanTweets.txt")
+        File annotateTweets = new File("annotateTweets.txt")
+
+        try {
+
+            Scanner console = new Scanner(cleanTweets)
+            PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(annotateTweets)))
+
+            Properties properties = new Properties();
+            properties.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse,sentiment");
+
+            /*properties.setProperty("ssplit.eolonly", "true");*/
+
+            StanfordCoreNLP pipeline = new StanfordCoreNLP(properties)
+
+            while (console.hasNextLine()) {
+
+                def line = console.nextLine()
+
+                Annotation document = new Annotation(line)
+
+                pipeline.annotate(document)
+
+                for (CoreMap sentence : document.get(CoreAnnotations.SentencesAnnotation.class)) {
+                    printWriter.write(sentence.get(CoreAnnotations.TextAnnotation.class))
+                    printWriter.write(sentence.get(SentimentCoreAnnotations.SentimentClass.class))
+                    printWriter.write("Hello World!")
+                    printWriter.println()
+                }
+
+            }
+
+
+        } catch (IOException e) {
+
+        }
+
+
+    }
 }
