@@ -32,13 +32,12 @@ function IndustryController(IndustryFactory, $location) {
 
         IndustryFactory.list({sectorName: sectorName, action: 'getIndustryList'}, function (res) {
 
-            if (res) {
-                vm.industryList = res;
-                vm.showIndustryArea = true;
-                vm.sectorName = vm.selected;
-            }
+            vm.industryList = res;
+            vm.showIndustryArea = true;
+            vm.sectorName = vm.selected;
+
         }, function () {
-            vm.errorMsg = "No industries found in " + vm.selected;
+            vm.errorMsg = "An error occurred";
         })
     };
 

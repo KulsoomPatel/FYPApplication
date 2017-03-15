@@ -1,9 +1,11 @@
 package fypapplication
 
 import edu.stanford.nlp.ling.CoreAnnotations
+import edu.stanford.nlp.neural.rnn.RNNCoreAnnotations
 import edu.stanford.nlp.pipeline.Annotation
 import edu.stanford.nlp.pipeline.StanfordCoreNLP
 import edu.stanford.nlp.sentiment.SentimentCoreAnnotations
+import edu.stanford.nlp.trees.Tree
 import edu.stanford.nlp.util.CoreMap
 import grails.transaction.Transactional
 
@@ -64,7 +66,7 @@ class CleanTweetsService {
             PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(annotateTweets)))
 
             Properties properties = new Properties();
-            properties.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse,sentiment");
+            properties.setProperty("annotators", "tokenize,ssplit,parse,sentiment");
 
             /*properties.setProperty("ssplit.eolonly", "true");*/
 
@@ -73,20 +75,46 @@ class CleanTweetsService {
             while (console.hasNextLine()) {
 
                 def line = console.nextLine()
-
+                int mainSentiment = 0
+                int longest = 0
                 Annotation document = new Annotation(line)
-
-                pipeline.annotate(document)
-
                 for (CoreMap sentence : document.get(CoreAnnotations.SentencesAnnotation.class)) {
-                    printWriter.write(sentence.get(CoreAnnotations.TextAnnotation.class))
-                    printWriter.write(sentence.get(SentimentCoreAnnotations.SentimentClass.class))
-                    printWriter.write("Hello World!")
-                    printWriter.println()
+                    Tree tree = sentence.get(SentimentCoreAnnotations.SentimentAnnotatedTree.class)
+
+                    int sentiment = RNNCoreAnnotations.getPredictedClass(tree)
+                    String partText = sentence.toString()
+
+                    if (partText.length() > longest) {
+                        mainSentiment = sentiment
+                        longest = partText.length()
+                    }
                 }
 
-            }
+                def sentimentValue
+                switch (mainSentiment) {
+                    case 0:
+                        sentimentValue = "Very Negative";
+                        break
+                    case 1:
+                        sentimentValue = "Negative";
+                        break
+                    case 2:
+                        sentimentValue = "Neutral";
+                        break
+                    case 3:
+                        sentimentValue = "Positive";
+                        break
+                    case 4:
+                        sentimentValue = "Very Positive";
+                        break
+                    default:
+                        sentimentValue = "";
+                        break
+                }
+                printWriter.write(sentimentValue + " || " + line)
+                printWriter.println()
 
+            }
 
         } catch (IOException e) {
 

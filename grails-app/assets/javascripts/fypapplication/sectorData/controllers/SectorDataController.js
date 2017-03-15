@@ -18,4 +18,8 @@ function SectorDataController(SectorDataFactory, IndustryFactory) {
             vm.responseMessage = response.theMessage;
         })
     };
+    
+    vm.getSectorIndustries = function () {
+        
+    }
 }

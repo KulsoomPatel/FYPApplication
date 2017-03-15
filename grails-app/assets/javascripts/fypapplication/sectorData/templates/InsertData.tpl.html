@@ -1,7 +1,7 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
 
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">Current Sectors</div>
             <div class="panel-body">
@@ -14,9 +14,9 @@
         </div>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
 
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <!-- Default panel contents -->
             <div class="panel-heading">Insert Sector</div>
             <div class="panel-body">
@@ -36,6 +36,30 @@
         </div>
 
     </div>
-</div>
 
+    <div class="col-md-4">
+        <div class="panel panel-warning">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Delete Sector</div>
+            <div class="panel-body">
+                <form>
+                    <div class="form-group">
+                        <label for="deleteSector">Sector</label>
+                        <input type="text" class="form-control" id="deleteSector" ng-model="ctrl.sector.name"
+                               placeholder="Delete Sector">
+                    </div>
+
+                    <button type="submit" class="btn btn-default center-block" ng-click="ctrl.getSectorIndustries()">View Industries
+                    </button>
+
+                </form>
+            </div>
+
+            <!-- List group -->
+            <ul class="list-group">
+
+            </ul>
+        </div>
+    </div>
+</div>
 
