@@ -4,8 +4,8 @@
 
 angular.module("fypapplication.sectordata")
     .config(function ($routeProvider) {
-        $routeProvider.when('/insertSectorData', {
-            templateUrl: "/fypapplication/sectorData/InsertData.html",
+        $routeProvider.when('/sectorData', {
+            templateUrl: "/fypapplication/sectorData/SectorData.html",
             controller: "SectorDataController as ctrl"
         })
     });

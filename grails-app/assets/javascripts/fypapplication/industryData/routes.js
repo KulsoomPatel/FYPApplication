@@ -5,8 +5,8 @@
 
 angular.module("fypapplication.industrydata")
     .config(function ($routeProvider) {
-        $routeProvider.when('/insertIndustryData', {
-            templateUrl: "/fypapplication/industryData/InsertIndustryData.html",
+        $routeProvider.when('/industryData', {
+            templateUrl: "/fypapplication/industryData/IndustryData.html",
             controller: "IndustryDataController as ctrl"
         })
     });

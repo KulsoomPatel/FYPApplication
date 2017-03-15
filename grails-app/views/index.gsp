@@ -17,8 +17,8 @@
 
     <ul class="nav nav-tabs">
         <li><a href="#/liveData" class="custom-navbar">Live Data</a></li>
-        <li><a href="#/insertSectorData" class="custom-navbar">Sector Data</a></li>
-        <li><a href="#/insertIndustryData" class="custom-navbar">Industry Data</a></li>
+        <li><a href="#/sectorData" class="custom-navbar">Sector Data</a></li>
+        <li><a href="#/industryData" class="custom-navbar">Industry Data</a></li>
     </ul>
 
 </br>

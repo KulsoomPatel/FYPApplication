@@ -11,6 +11,7 @@ function IndustryDataController(IndustryFactory, SectorDataFactory) {
     vm.selected = undefined;
     vm.showIndustryArea = false;
     vm.industry = undefined;
+    vm.industryName = undefined;
 
     IndustryFactory.list({action: 'getSectorList'}, function (response) {
         vm.sectorList = response;
@@ -37,6 +38,14 @@ function IndustryDataController(IndustryFactory, SectorDataFactory) {
     vm.saveTheIndustry = function () {
         SectorDataFactory.save({action: 'saveIndustry'}, vm.industry, function (response) {
             vm.responseMessage = response.theMessage;
+            vm.getIndustryList(vm.selected)
         });
     };
+
+    vm.deleteIndustry = function () {
+        SectorDataFactory.delete({industryName: vm.industryName, action: 'deleteIndustry'}, function (response) {
+            vm.deleteMessage = response.theMessage;
+            vm.getIndustryList(vm.selected)
+        })
+    }
 }

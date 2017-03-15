@@ -1,0 +1,8 @@
+model {
+
+    String string
+}
+
+json {
+    theMessage string
+}

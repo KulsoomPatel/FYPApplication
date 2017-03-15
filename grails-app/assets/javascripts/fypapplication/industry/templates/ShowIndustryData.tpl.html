@@ -20,7 +20,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <div class="panel panel-default" ng-show="ctrl.showIndustryArea">
+        <div class="panel panel-info" ng-show="ctrl.showIndustryArea">
             <div class="panel-heading"> Industries in the {{ctrl.sectorName}} Sector</div>
             <div class="panel-body">
 
@@ -39,7 +39,7 @@
     </div>
 
     <div class="col-md-6">
-        <div class="panel panel-default" ng-show="ctrl.showIndustryArea">
+        <div class="panel panel-success" ng-show="ctrl.showIndustryArea">
             <div class="panel-heading"> Selected Industries</div>
             <div class="panel-body">
                 <p ng-repeat="eachIndustry in ctrl.industries"> {{eachIndustry}}</p>
@@ -50,9 +50,8 @@
 </div>
 
 
-
-    <button type="button" class="btn btn-lg center-block" ng-show="ctrl.count > 0" ng-click="ctrl.getTwitterData()">Get
-        Twitter Data
-    </button>
+<button type="button" class="btn btn-lg center-block" ng-show="ctrl.count > 0" ng-click="ctrl.getTwitterData()">Get
+    Twitter Data
+</button>
 
 

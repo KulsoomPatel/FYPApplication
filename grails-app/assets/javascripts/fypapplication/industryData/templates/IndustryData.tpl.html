@@ -17,8 +17,8 @@
 </form>
 
 <div class="row" ng-show="ctrl.showIndustryArea">
-    <div class="col-md-6">
-        <div class="panel panel-default">
+    <div class="col-md-4">
+        <div class="panel panel-primary">
             <div class="panel-heading"> Industries in the {{ctrl.sectorName}} Sector</div>
             <div class="panel-body">
 
@@ -33,9 +33,9 @@
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
 
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <!-- Default panel contents -->
             <div class="panel-heading">Insert Industry</div>
             <div class="panel-body">
@@ -49,6 +49,31 @@
                     </div>
 
                     <button type="submit" class="btn btn-default center-block" ng-click="ctrl.getTheSector()">Save
+                        Industry
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="panel panel-danger">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Delete Industry</div>
+            <div class="panel-body">
+
+                <p> {{ctrl.deleteMessage}}</p>
+                <form>
+                    <div class="form-group">
+                        <label for="deleteIndustry">Industry</label>
+                        <input type="text" class="form-control" id="deleteIndustry" ng-model="ctrl.industryName"
+                               placeholder="Delete Industry">
+                    </div>
+
+                    <button type="submit" class="btn btn-default center-block" ng-click="ctrl.deleteIndustry()">Delete
                         Industry
                     </button>
                 </form>

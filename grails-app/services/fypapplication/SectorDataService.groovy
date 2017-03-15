@@ -24,11 +24,39 @@ class SectorDataService {
 
         String message
 
-        if (newSector.validate()) {
-            newSector.save(flush: true)
-            message = newSector.name + " has been saved"
+        if (newSector != null) {
+            if (newSector.validate()) {
+                newSector.save(flush: true)
+                message = newSector.name + " has been saved"
+            } else {
+                message = "Unable to save " + newSector.name
+            }
         } else {
-            message = "Unable to save " + newSector.name
+            message = "Insert a Sector"
+        }
+
+        return message
+    }
+
+    def deleteSector(String sectorName) {
+        String message
+
+        if (sectorName != null) {
+
+            Sector theSector = Sector.where {
+                name == sectorName
+            }.get()
+
+
+            if (theSector != null) {
+                theSector.delete(flush: true)
+                message = theSector.name + " has been deleted"
+            } else {
+                message = "Unable to delete " + theSector.name
+            }
+
+        } else {
+            message = "Enter Sector Name"
         }
 
         return message

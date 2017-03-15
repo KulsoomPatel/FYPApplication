@@ -4,7 +4,7 @@
         <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">Current Sectors</div>
-            <div class="panel-body">
+            <div class="panel-body" ng-init="ctrl.listSector()">
 
                 <ul ng-repeat="sector in ctrl.sectorList">
                     <li> {{sector.name}}</li>
@@ -42,22 +42,29 @@
             <!-- Default panel contents -->
             <div class="panel-heading">Delete Sector</div>
             <div class="panel-body">
+                <p> {{ctrl.deleteMessage}}</p>
                 <form>
                     <div class="form-group">
                         <label for="deleteSector">Sector</label>
-                        <input type="text" class="form-control" id="deleteSector" ng-model="ctrl.sector.name"
+                        <input type="text" class="form-control" id="deleteSector" ng-model="ctrl.sectorName"
                                placeholder="Delete Sector">
                     </div>
 
-                    <button type="submit" class="btn btn-default center-block" ng-click="ctrl.getSectorIndustries()">View Industries
+                    <button type="submit" class="btn btn-default center-block" ng-click="ctrl.getSectorIndustries()">
+                        View Industries
+                    </button>
+                    <br>
+                    <button type="submit" class="btn btn-danger center-block" ng-click="ctrl.deleteSector()">
+                        Delete Sector and Industries
                     </button>
 
                 </form>
             </div>
 
             <!-- List group -->
-            <ul class="list-group">
+            <ul class="list-group" ng-repeat="industry in ctrl.industryList">
 
+                <li class="list-group-item">{{industry.name}}</li>
             </ul>
         </div>
     </div>
