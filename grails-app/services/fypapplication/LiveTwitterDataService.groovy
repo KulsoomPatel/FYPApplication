@@ -1,6 +1,7 @@
 package fypapplication
 
 import grails.transaction.Transactional
+import org.omg.CORBA.TIMEOUT
 import twitter4j.FilterQuery
 import twitter4j.StallWarning
 import twitter4j.Status
@@ -61,7 +62,6 @@ class LiveTwitterDataService {
             }
         }
 
-
         TwitterStream stream = new TwitterStreamFactory().getInstance()
         stream.addListener(listener)
         FilterQuery fq = new FilterQuery()
@@ -72,9 +72,7 @@ class LiveTwitterDataService {
             @Override
             String call() throws Exception {
 
-
                 stream.filter(fq)
-
                 return null
             }
         })
@@ -85,10 +83,11 @@ class LiveTwitterDataService {
 
         } catch (TimeoutException e) {
 
-            future.cancel(true)
-            executor.shutdown()
             stream.removeListener(listener)
             stream.shutdown()
+            future.cancel(true)
+            executor.shutdownNow()
+
         }
     }
 

@@ -47,7 +47,6 @@ class SectorDataService {
                 name == sectorName
             }.get()
 
-
             if (theSector != null) {
                 theSector.delete(flush: true)
                 message = theSector.name + " has been deleted"
