@@ -66,29 +66,16 @@ class LiveTwitterDataService {
         stream.addListener(listener)
         FilterQuery fq = new FilterQuery()
         fq.track(theIndustries)
-        ExecutorService executor = Executors.newSingleThreadExecutor()
 
-        Future<String> future = executor.submit(new Callable<String>() {
-            @Override
-            String call() throws Exception {
-
-                stream.filter(fq)
-                return null
-            }
-        })
-
+        stream.filter(fq)
         try {
-
-            future.get(2, TimeUnit.MINUTES)
-
-        } catch (TimeoutException e) {
-
-            stream.removeListener(listener)
-            stream.shutdown()
-            future.cancel(true)
-            executor.shutdownNow()
-
+            Thread.sleep(2 * 60 * 1000); // just sleep on the caller thread
         }
+        catch (InterruptedException e) {
+            // ignore
+        }
+        stream.removeListener(listener)
+        stream.shutdown()
     }
 
     def processData(String type) {

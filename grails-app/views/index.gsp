@@ -26,6 +26,10 @@
     <div ng-view>
 
     </div>
+
+    <div id="footer">
+        &nbsp;
+    </div>
 </div>
 <asset:javascript src="fypapplication/fypapplication"/>
 <asset:javascript src="angular/ui-bootstrap-tpls.js"/>

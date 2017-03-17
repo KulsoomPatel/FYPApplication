@@ -20,14 +20,6 @@ function IndustryController(IndustryFactory, $location) {
     });
 
 
-    vm.getTwitterData = function () {
-        IndustryFactory.show({theIndustries: vm.industries, action: 'getIndustryData'}, function () {
-
-            $location.path("/processData/");
-        })
-    };
-
-
     vm.getIndustryList = function (sectorName) {
 
         IndustryFactory.list({sectorName: sectorName, action: 'getIndustryList'}, function (res) {
@@ -56,6 +48,13 @@ function IndustryController(IndustryFactory, $location) {
             vm.industries.push(industry.name);
             vm.count = vm.industries.length;
         }
+    };
+
+    vm.getTwitterData = function () {
+        IndustryFactory.show({theIndustries: vm.industries, action: 'getIndustryData'}, function () {
+
+            $location.path("/processData/");
+        })
     };
 
 }
