@@ -1,0 +1,10 @@
+model {
+
+    List<Integer> integerList
+}
+
+System.out.println "Model is $binding.variables"
+
+json {
+    integerList integerList
+}

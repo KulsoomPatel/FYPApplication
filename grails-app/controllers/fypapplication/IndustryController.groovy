@@ -22,19 +22,18 @@ class IndustryController {
 
         String[] theIndustries = params.list("theIndustries")
 
-
         liveTwitterDataService.getIndustryData(theIndustries)
-
     }
 
     def displayData() {
 
-        int accountingData = liveTwitterDataService.processData("accounting")
-        int teachingData = liveTwitterDataService.processData("teaching")
-        int engineeringData = liveTwitterDataService.processData("engineering")
-        int retailData = liveTwitterDataService.processData("retail")
-
-        [accountingData: accountingData, teachingData: teachingData, engineeringData: engineeringData, retailData: retailData]
+        String[] theIndustries = params.list("theIndustries")
+        def industryCount = []
+        for (String industry : theIndustries) {
+            int countMentions = liveTwitterDataService.processData(industry)
+            industryCount.add(countMentions)
+        }
+        respond industryCount
     }
 
 //returns a list of industries which match the sector name

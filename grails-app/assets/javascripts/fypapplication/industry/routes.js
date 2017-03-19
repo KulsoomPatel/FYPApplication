@@ -11,6 +11,6 @@ angular.module("fypapplication.industry")
 
         when('/processData', {
             templateUrl: "/fypapplication/industry/ProcessPage.html",
-            controller: "IndustryController as ctrl"
+            controller: "ProcessController as ctrl"
         })
     });

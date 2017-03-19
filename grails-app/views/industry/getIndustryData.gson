@@ -1,8 +1,0 @@
-model {
-    String messageStatus
-}
-
-json {
-    searchStatus messageStatus
-
-}

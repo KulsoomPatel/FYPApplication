@@ -3,6 +3,7 @@
 <head>
     <asset:stylesheet src="bootstrap/bootstrap.css"/>
     <asset:stylesheet src="custom.css"/>
+    <asset:stylesheet src="stylesheet/loading-bar.min.css"/>
 
 </head>
 
@@ -33,6 +34,7 @@
 </div>
 <asset:javascript src="fypapplication/fypapplication"/>
 <asset:javascript src="angular/ui-bootstrap-tpls.js"/>
+<asset:javascript src="angular/loading-bar.min.js"/>
 
 </body>
 </html>

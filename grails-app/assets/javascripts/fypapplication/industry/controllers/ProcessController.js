@@ -3,8 +3,16 @@
  */
 
 angular.module("fypapplication.industry")
-    .controller("ProcessController", ProcessController);
+    .controller("ProcessController", ["SharedList", "IndustryFactory", ProcessController]);
 
-function ProcessController() {
+function ProcessController(SharedList, IndustryFactory) {
 
+    var vm = this;
+    vm.theIndustries = SharedList;
+
+    IndustryFactory.show({theIndustries: vm.theIndustries, action: 'displayData'}, function (response) {
+
+        vm.theData = response.data;
+
+    });
 }

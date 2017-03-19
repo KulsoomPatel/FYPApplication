@@ -110,9 +110,17 @@ bower {
     'angular-touch'('1.4.x') {
         source 'angular-touch.js' >> '/angular/'
     }
+    'angular-loading-bar' {
+        source 'build/loading-bar.min.js' >> '/angular/'
+        source 'build/loading-bar.min.css' >> '/stylesheet/'
+    }
+    'angular-google-chart' ('0.1.0') {
+        source 'ng-google-chart.js' >> '/javascript/'
+    }
     'bootstrap'('3.x.x') {
         source 'dist/css/bootstrap.css' >> '/bootstrap/'
     }
+
 }
 
 karma {
