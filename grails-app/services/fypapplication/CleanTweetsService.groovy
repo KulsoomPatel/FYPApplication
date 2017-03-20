@@ -77,8 +77,8 @@ class CleanTweetsService {
                 def line = console.nextLine()
                 int mainSentiment = 0
                 int longest = 0
-                Annotation document = new Annotation(line)
-                for (CoreMap sentence : document.get(CoreAnnotations.SentencesAnnotation.class)) {
+                Annotation annotation = pipeline.process(line)
+                for (CoreMap sentence : annotation.get(CoreAnnotations.SentencesAnnotation.class)) {
                     Tree tree = sentence.get(SentimentCoreAnnotations.SentimentAnnotatedTree.class)
 
                     int sentiment = RNNCoreAnnotations.getPredictedClass(tree)
