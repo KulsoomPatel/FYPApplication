@@ -11,8 +11,10 @@ function IndustryController(IndustryFactory, $location, SharedList) {
     var vm = this;
     vm.sectorList = [];
     vm.selected = undefined;
+
     vm.showIndustryArea = false;
-    vm.industries = SharedList;
+    SharedList.clearList();
+    vm.industries = SharedList.getList();
 
     IndustryFactory.list({action: 'getSectorList'}, function (response) {
         vm.sectorList = response;

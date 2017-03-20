@@ -9,8 +9,18 @@ angular.module("fypapplication.industry")
 function SharedList() {
     var list = [];
 
-    return list;
+    var getList = function () {
+        return list;
+    };
 
+    var clearList = function () {
+        list.length = 0;
+    };
+
+    return {
+        getList: getList,
+        clearList: clearList
+    }
 
 }
 

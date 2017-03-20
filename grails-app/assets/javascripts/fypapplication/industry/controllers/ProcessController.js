@@ -8,7 +8,7 @@ angular.module("fypapplication.industry")
 function ProcessController(SharedList, IndustryFactory) {
 
     var vm = this;
-    vm.theIndustries = SharedList;
+    vm.theIndustries = SharedList.getList();
     vm.theData = [];
 
     IndustryFactory.show({theIndustries: vm.theIndustries, action: 'displayData'}, function (response) {
@@ -41,6 +41,7 @@ function ProcessController(SharedList, IndustryFactory) {
                 {id: "N", label: "Counts", type: "number"}
             ], "rows": vm.processData(vm.theIndustries, vm.theData)
         };
+
     };
 
 
