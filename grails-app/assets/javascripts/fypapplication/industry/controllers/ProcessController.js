@@ -9,10 +9,39 @@ function ProcessController(SharedList, IndustryFactory) {
 
     var vm = this;
     vm.theIndustries = SharedList;
+    vm.theData = [];
 
     IndustryFactory.show({theIndustries: vm.theIndustries, action: 'displayData'}, function (response) {
+            vm.theData = response.integerList;
+            vm.drawChart();
+        }
+    );
 
-        vm.theData = response.data;
+    vm.drawChart = function () {
 
-    });
+        vm.processData = function (theIndustries, count) {
+
+            var chartData = [];
+
+            for (i = 0; i < theIndustries.length; i++) {
+                chartData.push({c: [{v: theIndustries[i]}, {v: count[i]}]});
+            }
+            return chartData;
+        };
+
+        vm.myChartObject = {};
+        vm.myChartObject.type = 'PieChart';
+        vm.myChartObject.options = {
+            'title': 'Industry Mentions in the Data Set'
+        };
+
+        vm.myChartObject.data = {
+            "cols": [
+                {id: "I", label: "Industry", type: "string"},
+                {id: "N", label: "Counts", type: "number"}
+            ], "rows": vm.processData(vm.theIndustries, vm.theData)
+        };
+    };
+
+
 }
