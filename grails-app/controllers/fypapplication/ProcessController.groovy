@@ -11,6 +11,7 @@ class ProcessController {
 
         String[] theIndustries = params.list("theIndustries")
         cleanTweetsService.cleanTweets(theIndustries)
+        cleanTweetsService.findSentiment()
 
     }
 }

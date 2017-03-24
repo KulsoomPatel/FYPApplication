@@ -39,7 +39,7 @@ class CleanTweetsService {
                     String[] removeNoise = ["RT", urlIdentifier, "(?:\\s|\\A)[@]+([A-Za-z0-9-_]+)", "[^a-zA-Z0-9 ]"]
 
                     removeNoise.each { noise ->
-                        line = line.replaceAll(noise, "").toLowerCase()
+                        line = line.replaceAll(noise, "")
                     }
                     ln.add(line)
 
@@ -47,13 +47,21 @@ class CleanTweetsService {
             }
 
             ln.each { line ->
-                printWriter.write(line)
-                printWriter.println()
-            }
 
+                for (String industry : theIndustries) {
+                    if (line.contains(industry)) {
+                        printWriter.write(industry + "|||" + line.toLowerCase())
+                        printWriter.println()
+                    }
+
+                }
+
+            }
             printWriter.close()
             //write to file here
-        } catch (IOException e) {
+        }
+
+        catch (IOException e) {
         }
     }
 
@@ -79,9 +87,11 @@ class CleanTweetsService {
             while (console.hasNextLine()) {
 
                 def line = console.nextLine()
+
+                String[] splitter = line.split("\\|\\|\\|")
                 int mainSentiment = 0
                 int longest = 0
-                Annotation annotation = pipeline.process(line)
+                Annotation annotation = pipeline.process(splitter[1])
                 for (CoreMap sentence : annotation.get(CoreAnnotations.SentencesAnnotation.class)) {
                     Tree tree = sentence.get(SentimentCoreAnnotations.SentimentAnnotatedTree.class)
 
@@ -115,15 +125,40 @@ class CleanTweetsService {
                         sentimentValue = "";
                         break
                 }
-                printWriter.write(sentimentValue + " || " + line)
+                printWriter.write(sentimentValue + " || " + splitter[0] + " || " + splitter[1])
                 printWriter.println()
 
             }
 
+            printWriter.close()
         } catch (IOException e) {
 
         }
-
-
     }
+
+    def showSentiment() {
+
+        File annotatedTweets = new File("annotateTweets.txt")
+
+        try {
+            Scanner console = new Scanner(annotatedTweets)
+
+            while (console.hasNextLine()) {
+
+                String line = console.nextLine()
+                String[] splitter = line.split("\\|\\|")
+
+                if (splitter.length == 3) {
+
+                    String sentiment = splitter[0]
+                    String industry = splitter[1]
+
+                    
+                }
+            }
+
+        } catch (IOException e) {
+        }
+    }
+
 }

@@ -35,7 +35,6 @@ class LiveTwitterDataService {
                 printWriter.write(status.getLang() + "|||" + status.getText())
                 printWriter.println()
 
-
             }
 
             @Override
@@ -80,7 +79,7 @@ class LiveTwitterDataService {
         stream.removeListener(listener)
         stream.shutdown()
     }
-    
+
     def processData(String type) {
 
         int count = 0;
