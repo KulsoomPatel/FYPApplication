@@ -22,6 +22,7 @@ function IndustryDataController(IndustryFactory, SectorDataFactory) {
         IndustryFactory.list({sectorName: sectorName, action: 'getIndustryList'}, function (list) {
             vm.industryList = list;
             vm.showIndustryArea = true;
+            vm.sectorName = vm.selected;
         })
     };
 

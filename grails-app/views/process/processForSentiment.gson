@@ -1,0 +1,3 @@
+json {
+    greeting "Hello, World!"
+}

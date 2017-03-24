@@ -1,6 +1,5 @@
 package fypapplication
 
-
 import grails.rest.*
 import grails.converters.*
 
@@ -8,14 +7,10 @@ class ProcessController {
 
     def cleanTweetsService
 
-    def cleanTweets() {
+    def processForSentiment() {
 
-        cleanTweetsService.cleanTweets()
-    }
-
-    def annotateTweets() {
-
-        cleanTweetsService.findSentiment()
+        String[] theIndustries = params.list("theIndustries")
+        cleanTweetsService.cleanTweets(theIndustries)
 
     }
 }

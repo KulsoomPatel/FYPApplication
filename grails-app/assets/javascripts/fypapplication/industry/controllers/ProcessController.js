@@ -3,9 +3,9 @@
  */
 
 angular.module("fypapplication.industry")
-    .controller("ProcessController", ["SharedList", "IndustryFactory", ProcessController]);
+    .controller("ProcessController", ["SharedList", "IndustryFactory", "ProcessFactory", "$location", ProcessController]);
 
-function ProcessController(SharedList, IndustryFactory) {
+function ProcessController(SharedList, IndustryFactory, ProcessFactory, $location) {
 
     var vm = this;
     vm.theIndustries = SharedList.getList();
@@ -32,7 +32,7 @@ function ProcessController(SharedList, IndustryFactory) {
         vm.myChartObject = {};
         vm.myChartObject.type = 'PieChart';
         vm.myChartObject.options = {
-            'title': 'Industry Mentions in the Data Set'
+            'title': 'Categorisation of the Data Set'
         };
 
         vm.myChartObject.data = {
@@ -44,5 +44,10 @@ function ProcessController(SharedList, IndustryFactory) {
 
     };
 
+    vm.getSentiment = function () {
+        ProcessFactory.show({theIndustries: vm.theIndustries, action: 'processForSentiment'}, function (response) {
 
+            $location.path("/displaySentiment/");
+        })
+    }
 }

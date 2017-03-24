@@ -2,15 +2,15 @@
  * Created by Kulsoom on 30/01/2017.
  */
 angular.module("fypapplication.industry")
-    .config(function($routeProvider) {
-        $routeProvider.
-        when('/liveData', {
+    .config(function ($routeProvider) {
+        $routeProvider.when('/liveData', {
             templateUrl: "/fypapplication/industry/ShowIndustryData.html",
             controller: "IndustryController as ctrl"
-        }).
-
-        when('/processData', {
+        }).when('/processData', {
             templateUrl: "/fypapplication/industry/ProcessPage.html",
             controller: "ProcessController as ctrl"
+        }).when('/displaySentiment', {
+            templateUrl: "/fypapplication/industry/DisplaySentiment.html",
+            controller: "SentimentController as ctrl"
         })
     });

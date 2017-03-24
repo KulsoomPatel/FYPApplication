@@ -12,7 +12,7 @@ import grails.transaction.Transactional
 @Transactional
 class CleanTweetsService {
 
-    def cleanTweets() {
+    def cleanTweets(String[] theIndustries) {
 
         File dirtyTweets = new File("result.txt")
         File cleanTweets = new File("cleanTweets.txt")
@@ -21,7 +21,7 @@ class CleanTweetsService {
             Scanner console = new Scanner(dirtyTweets)
 
             PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(cleanTweets)))
-            LinkedHashSet<String> ln = new LinkedHashSet<String>();
+            LinkedHashSet<String> ln = new LinkedHashSet<String>()
 
             while (console.hasNextLine()) {
 
@@ -29,7 +29,7 @@ class CleanTweetsService {
 
                 String[] splitter = line.split("\\|\\|\\|")
                 //Only looks at the english tweets
-                if (splitter[0] == "en") {
+                if (splitter[0].equals("en")) {
 
                     line = line.replaceFirst("en", "")
 
@@ -50,6 +50,8 @@ class CleanTweetsService {
                 printWriter.write(line)
                 printWriter.println()
             }
+
+            printWriter.close()
             //write to file here
         } catch (IOException e) {
         }
@@ -68,7 +70,9 @@ class CleanTweetsService {
             Properties properties = new Properties();
             properties.setProperty("annotators", "tokenize,ssplit,parse,sentiment");
 
-            /*properties.setProperty("ssplit.eolonly", "true");*/
+            //As only passing single line to the Annotator
+            properties.setProperty("tokenize.whitespace", "true");
+            properties.setProperty("ssplit.eolonly", "true");
 
             StanfordCoreNLP pipeline = new StanfordCoreNLP(properties)
 
