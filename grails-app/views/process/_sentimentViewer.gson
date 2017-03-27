@@ -1,0 +1,11 @@
+import fypapplication.SentimentViewer
+
+model {
+
+    SentimentViewer sentimentViewer
+}
+
+System.out.println("Hello, World!")
+System.out.println("Model is $binding.variables")
+
+json g.render(sentimentViewer)

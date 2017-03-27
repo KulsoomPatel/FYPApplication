@@ -139,8 +139,13 @@ class CleanTweetsService {
     def showSentiment() {
 
         File annotatedTweets = new File("annotateTweets.txt")
+        Set<String> theIndustries = new HashSet<String>()
+        Set<String> theSentiments = new HashSet<String>()
+        //Store a list of SentimentViewer objects for each Sentiment
+        ArrayList<SentimentViewer> results = new ArrayList<>()
 
         try {
+
             Scanner console = new Scanner(annotatedTweets)
 
             while (console.hasNextLine()) {
@@ -153,12 +158,56 @@ class CleanTweetsService {
                     String sentiment = splitter[0]
                     String industry = splitter[1]
 
-                    
+                    //Store all the industries mentioned
+                    theIndustries.add(industry)
+                    //Store all the sentiments mentioned
+                    theSentiments.add(sentiment)
                 }
             }
+            //Initialise the list with each sentiment. The it is the sentiment keyword
+            theSentiments.each { it ->
+                results.add(new SentimentViewer(it))
+            }
+            console = new Scanner(annotatedTweets)
+            int totalCount = 0
+            while (console.hasNextLine()) {
 
-        } catch (IOException e) {
+                String line = console.nextLine()
+
+                String[] splitter = line.split("\\|\\|")
+
+                String sentiment
+                String industry
+
+
+                if (splitter.length == 3) {
+                    sentiment = splitter[0]
+                    industry = splitter[1]
+                }
+                for (String eachInd : theIndustries) {
+
+                    if (industry == eachInd) {
+
+                        results.each { theObject ->
+
+                            if (theObject.getSentiment() == sentiment) {
+
+                                if (theObject.checkSentimentCount(industry)) {
+                                    theObject.updateCount(industry)
+                                } else {
+                                    theObject.insertKeyIndustryCount(industry)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
+
+        catch (IOException e) {
+        }
+
+        return results
     }
 
 }
