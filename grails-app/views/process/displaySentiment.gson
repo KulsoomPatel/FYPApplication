@@ -2,11 +2,11 @@ import fypapplication.SentimentViewer
 
 model {
 
-    Iterable<SentimentViewer> sentimentViewerIterable
+    ArrayList<SentimentViewer> sentimentViewerList
 }
 
-System.out.println("Hello, World!")
-System.out.println("Model is $binding.variables")
+System.out.println "Hello, World!"
+System.out.println "Model is $binding.variables"
 
-json tmpl.sentimentViewer(sentimentViewerIterable)
+json tmpl.sentimentViewer(sentimentViewerList)
 

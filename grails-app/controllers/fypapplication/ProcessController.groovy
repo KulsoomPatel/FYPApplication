@@ -20,7 +20,7 @@ class ProcessController {
 
         def sentimentResults = cleanTweetsService.showSentiment()
 
-        render sentimentResults
+        respond sentimentResults
 
     }
 }

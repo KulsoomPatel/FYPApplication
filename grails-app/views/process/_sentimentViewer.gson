@@ -5,7 +5,11 @@ model {
     SentimentViewer sentimentViewer
 }
 
-System.out.println("Hello, World!")
-System.out.println("Model is $binding.variables")
+System.out.println "Hello, World!"
+System.out.println "Model is $binding.variables"
 
-json g.render(sentimentViewer)
+json {
+    sentimentType sentimentViewer.sentimentType
+    industryCount sentimentViewer.industryCount
+
+}
