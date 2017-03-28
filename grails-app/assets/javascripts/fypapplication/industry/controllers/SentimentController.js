@@ -23,7 +23,7 @@ function SentimentController(ProcessFactory, SharedList) {
             var industryTitle = ['Industry'];
 
             //put all of the industries as the chart title
-            angular.forEach(vm.theIndustries, function (value) {
+            angular.forEach(sentimentResults[0].industryCount, function (key, value) {
                 industryTitle.push(value)
             });
 
@@ -35,7 +35,13 @@ function SentimentController(ProcessFactory, SharedList) {
 
                 var sentimentValues = [eachResult.sentimentType];
                 angular.forEach(eachResult.industryCount, function (key, value) {
-                    sentimentValues.push(key);
+
+                    angular.forEach(vm.theIndustries, function (industry) {
+                        if (industry === value) {
+                            sentimentValues.push(key);
+                        }
+                    });
+
                 });
                 sentimentValues.push(' ');
                 results.push(sentimentValues)
@@ -44,13 +50,13 @@ function SentimentController(ProcessFactory, SharedList) {
             return results;
         };
 
-/*        [
-            ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
-                'Western', 'Literature', { role: 'annotation' } ],
-            ['2010', 10, 24, 20, 32, 18, 5, ''],
-            ['2020', 16, 22, 23, 30, 16, 9, ''],
-            ['2030', 28, 19, 29, 30, 12, 13, '']
-        ]*/
+        /*        [
+         ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
+         'Western', 'Literature', { role: 'annotation' } ],
+         ['2010', 10, 24, 20, 32, 18, 5, ''],
+         ['2020', 16, 22, 23, 30, 16, 9, ''],
+         ['2030', 28, 19, 29, 30, 12, 13, '']
+         ]*/
 
         vm.myChartObject = {};
 
