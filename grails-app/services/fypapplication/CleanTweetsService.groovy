@@ -136,10 +136,9 @@ class CleanTweetsService {
         }
     }
 
-    def showSentiment() {
+    def showSentiment(String[] theIndustries) {
 
         File annotatedTweets = new File("annotateTweets.txt")
-        Set<String> theIndustries = new HashSet<String>()
         Set<String> theSentiments = new HashSet<String>()
         //Store a list of SentimentViewer objects for each Sentiment
         ArrayList<SentimentViewer> results = new ArrayList<>()
@@ -158,8 +157,6 @@ class CleanTweetsService {
                     String sentiment = splitter[0]
                     String industry = splitter[1]
 
-                    //Store all the industries mentioned
-                    theIndustries.add(industry)
                     //Store all the sentiments mentioned
                     theSentiments.add(sentiment)
                 }
@@ -168,8 +165,11 @@ class CleanTweetsService {
             theSentiments.each { it ->
                 results.add(new SentimentViewer(it))
             }
+            results.each { it ->
+                it.initialIndustryInsert(theIndustries)
+            }
             console = new Scanner(annotatedTweets)
-            int totalCount = 0
+
             while (console.hasNextLine()) {
 
                 String line = console.nextLine()
@@ -185,18 +185,14 @@ class CleanTweetsService {
                     industry = splitter[1]
                 }
                 for (String eachInd : theIndustries) {
-
-                    if (industry == eachInd) {
+                    String cleanEachInd = eachInd.replaceAll("\"", "").trim()
+                    if (industry.contains(cleanEachInd)) {
 
                         results.each { theObject ->
 
                             if (theObject.getSentiment() == sentiment) {
 
-                                if (theObject.checkSentimentCount(industry)) {
-                                    theObject.updateCount(industry)
-                                } else {
-                                    theObject.insertKeyIndustryCount(industry)
-                                }
+                                theObject.updateCount(cleanEachInd)
                             }
                         }
                     }

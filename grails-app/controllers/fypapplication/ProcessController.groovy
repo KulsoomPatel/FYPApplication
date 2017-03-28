@@ -17,8 +17,10 @@ class ProcessController {
     }
 
     def displaySentiment() {
+        /*String[] theIndustries = params.list("theIndustries")*/
 
-        def sentimentResults = cleanTweetsService.showSentiment()
+        String[] theIndustries = ["Doctor", "Nurse", "Midwife"]
+        def sentimentResults = cleanTweetsService.showSentiment(theIndustries)
 
         respond sentimentResults
 

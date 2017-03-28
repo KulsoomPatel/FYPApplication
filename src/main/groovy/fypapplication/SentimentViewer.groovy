@@ -26,8 +26,10 @@ class SentimentViewer {
         }
     }
 
-    def insertKeyIndustryCount(String key) {
-        industryCount.put(key, 1)
+    def initialIndustryInsert(String[] theIndustries) {
+        theIndustries.each { it ->
+            industryCount.put(it, 0)
+        }
     }
 
     def updateCount(String industry) {

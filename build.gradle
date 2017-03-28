@@ -114,7 +114,7 @@ bower {
         source 'build/loading-bar.min.js' >> '/angular/'
         source 'build/loading-bar.min.css' >> '/stylesheet/'
     }
-    'angular-google-chart' ('0.1.0') {
+    'angular-google-chart'('0.1.0') {
         source 'ng-google-chart.js' >> '/javascript/'
     }
     'bootstrap'('3.x.x') {
