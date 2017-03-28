@@ -17,15 +17,6 @@ class SentimentViewer {
         return sentimentType
     }
 
-    boolean checkSentimentCount(String industry) {
-        if (industryCount.containsKey(industry)) {
-            return true
-        } else {
-            return false
-
-        }
-    }
-
     def initialIndustryInsert(String[] theIndustries) {
         theIndustries.each { it ->
             industryCount.put(it, 0)

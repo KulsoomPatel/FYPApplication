@@ -1,9 +1,5 @@
 package fypapplication
 
-import com.google.gson.JsonObject
-import grails.rest.*
-import grails.converters.*
-
 class ProcessController {
 
     def cleanTweetsService
@@ -17,9 +13,9 @@ class ProcessController {
     }
 
     def displaySentiment() {
-        /*String[] theIndustries = params.list("theIndustries")*/
+        String[] theIndustries = params.list("theIndustries")
 
-        String[] theIndustries = ["Doctor", "Nurse", "Midwife"]
+        /*String[] theIndustries = ["Doctor", "Nurse", "Midwife"]*/
         def sentimentResults = cleanTweetsService.showSentiment(theIndustries)
 
         respond sentimentResults
