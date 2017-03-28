@@ -185,14 +185,14 @@ class CleanTweetsService {
                     industry = splitter[1]
                 }
                 for (String eachInd : theIndustries) {
-                    String cleanEachInd = eachInd.replaceAll("\"", "").trim()
-                    if (industry.contains(cleanEachInd)) {
+                    String cleanIndustry = industry.replaceAll("\"", "").trim()
+                    if (cleanIndustry == eachInd) {
 
                         results.each { theObject ->
 
                             if (theObject.getSentiment() == sentiment) {
 
-                                theObject.updateCount(cleanEachInd)
+                                theObject.updateCount(eachInd)
                             }
                         }
                     }
