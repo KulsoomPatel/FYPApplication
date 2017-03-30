@@ -65,18 +65,44 @@ function SentimentController(ProcessFactory, SharedList, $http) {
     vm.employmentStats = function () {
         $http.get("http://api.adzuna.com:80/v1/api/jobs/gb/histogram?app_id=fac32a55&app_key=24eb5252096a41c8156ba154c1fe7e73&what=doctor")
             .then(function (response) {
-                vm.employmentResult = response.data
+                vm.employmentResult = response.data;
+                vm.drawHistogram();
             });
+
+
     };
 
 
-    var drawHistogram = function () {
+    vm.drawHistogram = function () {
 
-        vm.histogramChart = {};
-        vm.histogramChart.type = "Histogram";
+        vm.processData = function (results) {
+
+            var theData = [];
+
+            angular.forEach(results.histogram, function (key, value) {
+                theData.push({c: [{v: key}, {v: value}]})
+            });
+
+            return theData;
+        };
+
+        vm.employmentChartObject = {};
+
+        vm.employmentChartObject.type = "ColumnChart";
+
+        vm.employmentChartObject.options = {
+            'title': 'Number of Vacancies and Salaries'
+        };
+
+        vm.employmentChartObject.data = {
+            "cols": [
+                {id: "v", label: "Vacancies", type: "number"},
+                {id: "s", label: "Salary", type: "number"}
+            ], "rows": vm.processData(vm.employmentResult)
+        };
 
     };
 
-    var
+
 
 }
