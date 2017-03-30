@@ -3,9 +3,9 @@
  */
 
 angular.module("fypapplication.industry")
-    .controller("SentimentController", ["ProcessFactory", "SharedList", SentimentController]);
+    .controller("SentimentController", ["ProcessFactory", "SharedList", "$http", SentimentController]);
 
-function SentimentController(ProcessFactory, SharedList) {
+function SentimentController(ProcessFactory, SharedList, $http) {
 
     var vm = this;
 
@@ -50,14 +50,6 @@ function SentimentController(ProcessFactory, SharedList) {
             return results;
         };
 
-        /*        [
-         ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
-         'Western', 'Literature', { role: 'annotation' } ],
-         ['2010', 10, 24, 20, 32, 18, 5, ''],
-         ['2020', 16, 22, 23, 30, 16, 9, ''],
-         ['2030', 28, 19, 29, 30, 12, 13, '']
-         ]*/
-
         vm.myChartObject = {};
 
         vm.myChartObject.type = "BarChart";
@@ -68,7 +60,23 @@ function SentimentController(ProcessFactory, SharedList) {
             'title': 'Sentiment Analysis of the Industries',
             isStacked: true
         };
-    }
+    };
 
+    vm.employmentStats = function () {
+        $http.get("http://api.adzuna.com:80/v1/api/jobs/gb/histogram?app_id=fac32a55&app_key=24eb5252096a41c8156ba154c1fe7e73&what=doctor")
+            .then(function (response) {
+                vm.employmentResult = response.data
+            });
+    };
+
+
+    var drawHistogram = function () {
+
+        vm.histogramChart = {};
+        vm.histogramChart.type = "Histogram";
+
+    };
+
+    var
 
 }
