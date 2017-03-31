@@ -80,7 +80,7 @@ function SentimentController(ProcessFactory, SharedList, $http) {
             var theData = [];
 
             angular.forEach(results.histogram, function (key, value) {
-                theData.push({c: [{v: key}, {v: value}]})
+                theData.push({c: [{v: value}, {v: key}]})
             });
 
             return theData;
@@ -96,13 +96,12 @@ function SentimentController(ProcessFactory, SharedList, $http) {
 
         vm.employmentChartObject.data = {
             "cols": [
-                {id: "v", label: "Vacancies", type: "number"},
-                {id: "s", label: "Salary", type: "number"}
+                {id: "v", label: "Salary", type: "number"},
+                {id: "s", label: "Vacancies", type: "number"}
             ], "rows": vm.processData(vm.employmentResult)
         };
 
     };
-
 
 
 }
