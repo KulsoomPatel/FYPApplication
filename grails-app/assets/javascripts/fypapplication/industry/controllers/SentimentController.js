@@ -69,9 +69,45 @@ function SentimentController(ProcessFactory, SharedList, $http) {
                 vm.drawHistogram();
             });
 
-
+        $http.get("http://api.adzuna.com:80/v1/api/jobs/gb/history?app_id=fac32a55&app_key=24eb5252096a41c8156ba154c1fe7e73&what=doctor&months=6")
+            .then(function (response) {
+                vm.previousEmploymentStats = response.data;
+                vm.drawPreviousEmpResults();
+            });
     };
 
+    vm.drawPreviousEmpResults = function () {
+
+
+        vm.processData = function (theData) {
+
+            var tableData = [];
+
+            angular.forEach(theData.month, function (key, value) {
+                tableData.push({c: [{v: value}, {v: key}]})
+            });
+
+            return tableData;
+        };
+
+        vm.pastEmploymentChartObject = {};
+
+        vm.pastEmploymentChartObject.type = "LineChart";
+
+        vm.pastEmploymentChartObject.options = {
+            'title': 'Previous 6 months Salary',
+            curveType: 'function',
+            legend: { position: 'bottom' }
+        };
+
+        vm.pastEmploymentChartObject.data = {
+            "cols": [
+                {id: "v", label: "Month", type: "string"},
+                {id: "s", label: "Salary", type: "number"}
+            ], "rows": vm.processData(vm.previousEmploymentStats)
+        };
+
+    };
 
     vm.drawHistogram = function () {
 
