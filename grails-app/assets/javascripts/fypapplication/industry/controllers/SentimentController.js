@@ -8,6 +8,7 @@ angular.module("fypapplication.industry")
 function SentimentController(ProcessFactory, SharedList, $http) {
 
     var vm = this;
+    vm.selectedIndustry = undefined;
 
     vm.theIndustries = SharedList.getList();
     ProcessFactory.list({theIndustries: vm.theIndustries, action: 'displaySentiment'}, function (response) {
@@ -63,13 +64,13 @@ function SentimentController(ProcessFactory, SharedList, $http) {
     };
 
     vm.employmentStats = function () {
-        $http.get("http://api.adzuna.com:80/v1/api/jobs/gb/histogram?app_id=fac32a55&app_key=24eb5252096a41c8156ba154c1fe7e73&what=doctor")
+        $http.get("http://api.adzuna.com:80/v1/api/jobs/gb/histogram?app_id=fac32a55&app_key=24eb5252096a41c8156ba154c1fe7e73&what=" + vm.selectedIndustry)
             .then(function (response) {
                 vm.employmentResult = response.data;
                 vm.drawHistogram();
             });
 
-        $http.get("http://api.adzuna.com:80/v1/api/jobs/gb/history?app_id=fac32a55&app_key=24eb5252096a41c8156ba154c1fe7e73&what=doctor&months=6")
+        $http.get("http://api.adzuna.com:80/v1/api/jobs/gb/history?app_id=fac32a55&app_key=24eb5252096a41c8156ba154c1fe7e73&what=" + vm.selectedIndustry + "&months=6")
             .then(function (response) {
                 vm.previousEmploymentStats = response.data;
                 vm.drawPreviousEmpResults();
@@ -97,7 +98,10 @@ function SentimentController(ProcessFactory, SharedList, $http) {
         vm.pastEmploymentChartObject.options = {
             'title': 'Previous 6 months Salary',
             curveType: 'function',
-            legend: { position: 'bottom' }
+            legend: {position: 'bottom'},
+            series: {
+                0: {color: '#e2431e'}
+            }
         };
 
         vm.pastEmploymentChartObject.data = {
