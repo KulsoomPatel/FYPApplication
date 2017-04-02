@@ -96,7 +96,7 @@ function SentimentController(ProcessFactory, SharedList, $http) {
         vm.pastEmploymentChartObject.type = "LineChart";
 
         vm.pastEmploymentChartObject.options = {
-            'title': 'Previous 6 months Salary',
+            'title': 'Previous 6 months Salary for ' + vm.selectedIndustry,
             curveType: 'function',
             legend: {position: 'bottom'},
             series: {
@@ -131,7 +131,7 @@ function SentimentController(ProcessFactory, SharedList, $http) {
         vm.employmentChartObject.type = "ColumnChart";
 
         vm.employmentChartObject.options = {
-            'title': 'Number of Vacancies and Salaries'
+            'title': 'Number of Vacancies and Salaries for ' + vm.selectedIndustry
         };
 
         vm.employmentChartObject.data = {

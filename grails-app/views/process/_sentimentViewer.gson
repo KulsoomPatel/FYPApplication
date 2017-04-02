@@ -5,9 +5,6 @@ model {
     SentimentViewer sentimentViewer
 }
 
-System.out.println "Hello, World!"
-System.out.println "Model is $binding.variables"
-
 json {
     sentimentType sentimentViewer.sentimentType
     industryCount sentimentViewer.industryCount

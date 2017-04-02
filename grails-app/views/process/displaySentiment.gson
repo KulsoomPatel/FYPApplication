@@ -5,8 +5,5 @@ model {
     ArrayList<SentimentViewer> sentimentViewerList
 }
 
-System.out.println "Hello, World!"
-System.out.println "Model is $binding.variables"
-
 json tmpl.sentimentViewer(sentimentViewerList)
 
