@@ -6,7 +6,7 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        def sectors = ["Technology", "Engineering", "Business", "Health"]
+        /*def sectors = ["Technology", "Engineering", "Business", "Health"]
 
         def techIndustry = ["Computer Science", "Artificial Intelligence", "Software Engineering"]
         def engIndustry = ["Chemical Engineering", "Mechanical Engineering", "Civil Engineering"]
@@ -40,7 +40,7 @@ class BootStrap {
 
         myIndustries.each { it ->
             new MyIndustries(industry: it).save(flush: true)
-        }
+        }*/
     }
     def destroy = {
     }
