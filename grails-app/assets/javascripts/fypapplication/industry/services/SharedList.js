@@ -6,21 +6,11 @@ angular.module("fypapplication.industry")
     .factory("SharedList", SharedList);
 
 
-function SharedList() {
-    var list = [];
-
-    var getList = function () {
-        return list;
-    };
-
-    var clearList = function () {
-        list.length = 0;
-    };
-
-    return {
-        getList: getList,
-        clearList: clearList
-    }
-
+function SharedList(DomainServiceFactory) {
+    return DomainServiceFactory('/myIndustries/:action', {action: '@action'},
+        {"show": {method: "GET"}},
+        {"save": {method: "POST"}},
+        {"delete": {method: "DELETE"}}
+    );
 }
 

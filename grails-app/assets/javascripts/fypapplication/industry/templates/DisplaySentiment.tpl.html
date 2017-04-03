@@ -17,13 +17,15 @@
 
     <div class="form-group">
         <div class="col-md-12">
-            <button type="submit" class="btn btn-default center-block" ng-click="ctrl.employmentStats()">View Statistics</button>
+            <button type="submit" class="btn btn-default center-block" ng-click="ctrl.employmentStats()">View
+                Statistics
+            </button>
         </div>
     </div>
 </form>
 
 
-<div class="row">
+<div class="row" ng-show="ctrl.displayChart">
     <div class="col-md-6">
         <div google-chart chart="ctrl.employmentChartObject" style="height:400px; width:100%;"></div>
     </div>

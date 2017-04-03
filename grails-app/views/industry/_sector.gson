@@ -4,4 +4,5 @@ model {
     Sector sector
 }
 
+System.out.println "Model is $binding.variables"
 json g.render(sector)

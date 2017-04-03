@@ -9,13 +9,17 @@ function SentimentController(ProcessFactory, SharedList, $http) {
 
     var vm = this;
     vm.selectedIndustry = undefined;
+    vm.displayChart = false;
 
-    vm.theIndustries = SharedList.getList();
-    ProcessFactory.list({theIndustries: vm.theIndustries, action: 'displaySentiment'}, function (response) {
-        vm.sentimentResults = response;
-        vm.drawSentimentResults()
+    SharedList.show({action: 'getList'}, function (response) {
+        vm.theIndustries = response.savedIndustries;
+
+        ProcessFactory.list({theIndustries: vm.theIndustries, action: 'displaySentiment'}, function (response) {
+            vm.sentimentResults = response;
+            vm.drawSentimentResults()
 
 
+        });
     });
 
     vm.drawSentimentResults = function () {
@@ -64,6 +68,8 @@ function SentimentController(ProcessFactory, SharedList, $http) {
     };
 
     vm.employmentStats = function () {
+
+        vm.displayChart = true;
         $http.get("http://api.adzuna.com:80/v1/api/jobs/gb/histogram?app_id=fac32a55&app_key=24eb5252096a41c8156ba154c1fe7e73&what=" + vm.selectedIndustry)
             .then(function (response) {
                 vm.employmentResult = response.data;

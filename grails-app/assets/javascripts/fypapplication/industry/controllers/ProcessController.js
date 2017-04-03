@@ -8,14 +8,19 @@ angular.module("fypapplication.industry")
 function ProcessController(SharedList, IndustryFactory, ProcessFactory, $location) {
 
     var vm = this;
-    vm.theIndustries = SharedList.getList();
-    vm.theData = [];
 
-    IndustryFactory.show({theIndustries: vm.theIndustries, action: 'displayData'}, function (response) {
-            vm.theData = response.integerList;
-            vm.drawChart();
-        }
-    );
+    SharedList.show({action: 'getList'}, function (response) {
+        vm.theIndustries = response.savedIndustries;
+
+        IndustryFactory.show({theIndustries: vm.theIndustries, action: 'displayData'}, function (response) {
+                vm.theData = response.integerList;
+                vm.drawChart();
+            }
+        );
+
+    });
+
+    vm.theData = [];
 
     vm.drawChart = function () {
 

@@ -13,8 +13,10 @@ function IndustryController(IndustryFactory, $location, SharedList) {
     vm.selected = undefined;
 
     vm.showIndustryArea = false;
-    SharedList.clearList();
-    vm.industries = SharedList.getList();
+
+
+    //Assign an empty list
+    vm.industries = [];
 
     IndustryFactory.list({action: 'getSectorList'}, function (response) {
         vm.sectorList = response;
@@ -53,10 +55,17 @@ function IndustryController(IndustryFactory, $location, SharedList) {
 
     vm.getTwitterData = function () {
 
-        IndustryFactory.show({theIndustries: vm.industries, action: 'getIndustryData'}, function () {
+        SharedList.delete({action: 'deleteListData'}, function () {
 
-            $location.path("/processData/");
-        })
+            SharedList.show({theIndustries: vm.industries, action: 'insertListData'}, function () {
+                IndustryFactory.show({theIndustries: vm.industries, action: 'getIndustryData'}, function () {
+
+                    $location.path("/processData/");
+                })
+            });
+        });
+
+
     };
 
 }

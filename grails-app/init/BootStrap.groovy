@@ -1,6 +1,6 @@
 import fypapplication.Industry
+import fypapplication.MyIndustries
 import fypapplication.Sector
-import org.grails.datastore.mapping.query.Query
 
 class BootStrap {
 
@@ -12,6 +12,7 @@ class BootStrap {
         def engIndustry = ["Chemical Engineering", "Mechanical Engineering", "Civil Engineering"]
         def businessIndustry = ["Human Resources", "Accounting", "CEO"]
         def healthIndustry = ["Doctor", "Nurse", "Midwife"]
+        def myIndustries = ["CEO", "Accounting"]
 
         Sector techSector = new Sector(name: "Technology").save(flush: true)
         techIndustry.each { it ->
@@ -35,6 +36,10 @@ class BootStrap {
 
         healthIndustry.each { it ->
             healthSector.addToIndustries(new Industry(name: it)).save(flush: true)
+        }
+
+        myIndustries.each { it ->
+            new MyIndustries(industry: it).save(flush: true)
         }
     }
     def destroy = {
