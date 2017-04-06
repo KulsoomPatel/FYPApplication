@@ -90,7 +90,9 @@ function SentimentController(ProcessFactory, SharedList, $http) {
 
             var tableData = [];
 
-            angular.forEach(theData.month, function (key, value) {
+            var myArray = theData.month;
+
+            angular.forEach(myArray, function (key, value) {
                 tableData.push({c: [{v: value}, {v: key}]})
             });
 

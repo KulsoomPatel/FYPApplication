@@ -9,7 +9,7 @@ angular.module("fypapplication.industry")
         }).when('/processData', {
             templateUrl: "/fypapplication/industry/ProcessPage.html",
             controller: "ProcessController as ctrl"
-        }).when('/displaySentiment', {
+        }).when('/', {
             templateUrl: "/fypapplication/industry/DisplaySentiment.html",
             controller: "SentimentController as ctrl"
         })

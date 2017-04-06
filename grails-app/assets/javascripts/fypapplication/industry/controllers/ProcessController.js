@@ -52,7 +52,7 @@ function ProcessController(SharedList, IndustryFactory, ProcessFactory, $locatio
     vm.getSentiment = function () {
         ProcessFactory.show({theIndustries: vm.theIndustries, action: 'processForSentiment'}, function (response) {
 
-            $location.path("/displaySentiment/");
+            $location.path("/");
         })
     }
 }

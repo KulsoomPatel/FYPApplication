@@ -3,6 +3,7 @@ package fypapplication
 class ProcessController {
 
     def cleanTweetsService
+    def generateWordCloudService
 
     def processForSentiment() {
 
@@ -20,5 +21,16 @@ class ProcessController {
 
         respond sentimentResults
 
+    }
+
+    def cleanWordClouds() {
+
+        generateWordCloudService.cleanTweetsWordCloud()
+    }
+
+    def getWordClouds() {
+
+        def theIndustry = "CEO"
+        generateWordCloudService.createWordClouds(theIndustry)
     }
 }
