@@ -1,9 +1,11 @@
 import fypapplication.WordCloud
 
 model {
-    ArrayList<WordCloud> wordCloudList
+    WordCloud wordCloud
 }
-
 System.out.println "Model is $binding.variables"
 
-json tmpl.wordCloud(wordCloudList)
+json {
+    word wordCloud.theWord
+    count wordCloud.wordCount
+}

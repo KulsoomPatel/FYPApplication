@@ -28,9 +28,15 @@ class ProcessController {
         generateWordCloudService.cleanTweetsWordCloud()
     }
 
+    def createWordCloud(String theIndustry) {
+
+        generateWordCloudService.createWordClouds(theIndustry)
+    }
+
     def getWordClouds() {
 
-        def theIndustry = "CEO"
-        generateWordCloudService.createWordClouds(theIndustry)
+        def cloudResult = generateWordCloudService.renderWordCloud()
+
+        respond cloudResult
     }
 }

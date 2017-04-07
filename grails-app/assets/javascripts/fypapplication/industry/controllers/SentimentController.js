@@ -119,6 +119,7 @@ function SentimentController(ProcessFactory, SharedList, $http) {
             ], "rows": vm.processData(vm.previousEmploymentStats)
         };
 
+        vm.cloudChartData();
     };
 
     vm.drawHistogram = function () {
@@ -152,4 +153,16 @@ function SentimentController(ProcessFactory, SharedList, $http) {
     };
 
 
+    vm.cloudChartData = function () {
+
+        ProcessFactory.get({action: 'cleanWordClouds'}, function () {
+
+            ProcessFactory.get({action: 'createWordCloud', theIndustry: vm.selectedIndustry}, function () {
+
+                ProcessFactory.list({action: 'getWordClouds'}, function (response) {
+                    vm.wordCloud = response.data
+                })
+            })
+        })
+    };
 }

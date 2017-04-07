@@ -104,6 +104,7 @@ class GenerateWordCloudService {
             filter.setDictionaryFileToSaveTo(savedResults)
             filter.setOutputWordCounts(true)
             filter.setTFTransform(true)
+            filter.setWordsToKeep(15)
             Instances dataFiltered = weka.filters.Filter.useFilter(instances, filter)
 
 
@@ -112,4 +113,32 @@ class GenerateWordCloudService {
         }
 
     }
+
+    def renderWordCloud() {
+        File theFile = new File("savedResults.arff");
+        ArrayList<WordCloud> cloudResults = new ArrayList<>()
+
+        try {
+
+            Scanner console = new Scanner(theFile)
+
+            while (console.hasNextLine()) {
+
+                String line = console.nextLine()
+
+                String[] splitter = line.split(",")
+
+                String word = splitter[0]
+                String wordCount = splitter[1]
+
+                cloudResults.add(new WordCloud(word, wordCount))
+            }
+        } catch (IOException e) {
+
+        }
+
+        return cloudResults
+
+    }
+
 }
