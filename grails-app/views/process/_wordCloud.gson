@@ -6,6 +6,6 @@ model {
 System.out.println "Model is $binding.variables"
 
 json {
-    word wordCloud.theWord
-    count wordCloud.wordCount
+    text wordCloud.theWord
+    weight wordCloud.wordCount
 }

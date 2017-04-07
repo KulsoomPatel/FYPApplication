@@ -7,8 +7,8 @@
 //= require /angular/angular-route
 //= require /angular/angular-touch
 //= require /angular/angular-animate
-//= require /angular/jqcloud
 //= require /angular/ui-bootstrap-tpls
+//= require /javascript/jqcloud
 //= require /angular/fypapplication/fypapplication.core
 //= require_self
 //= require routes
@@ -17,4 +17,4 @@
 //= require_tree domain
 //= require_tree templates
 
-angular.module("fypapplication.industry", ["ngRoute", "ui.bootstrap", "angular-jqcloud", "ngAnimate", "ngTouch", "fypapplication.core"]);
+angular.module("fypapplication.industry", ["ngRoute", "angular-jqcloud", "ui.bootstrap", "ngAnimate", "ngTouch", "fypapplication.core"]);

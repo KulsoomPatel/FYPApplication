@@ -160,7 +160,7 @@ function SentimentController(ProcessFactory, SharedList, $http) {
             ProcessFactory.get({action: 'createWordCloud', theIndustry: vm.selectedIndustry}, function () {
 
                 ProcessFactory.list({action: 'getWordClouds'}, function (response) {
-                    vm.wordCloud = response.data
+                    vm.wordCloud = response
                 })
             })
         })

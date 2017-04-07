@@ -122,9 +122,9 @@ bower {
     'bootstrap'('3.x.x') {
         source 'dist/css/bootstrap.css' >> '/bootstrap/'
     }
-    'jqcloud2'('2.0.1') {
-        source 'dist/jqcloud.min.css' >> '/stylesheet/'
-        source 'dist/jqcloud.min.js' >> '/angular/'
+    'angular-jqcloud'('1.0.3') {
+        source 'angular-jqcloud.js' >> '/javascript/'
+
     }
 
 }

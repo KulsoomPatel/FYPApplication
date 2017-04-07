@@ -129,7 +129,7 @@ class GenerateWordCloudService {
                 String[] splitter = line.split(",")
 
                 String word = splitter[0]
-                String wordCount = splitter[1]
+                int wordCount = splitter[1] as Integer
 
                 cloudResults.add(new WordCloud(word, wordCount))
             }

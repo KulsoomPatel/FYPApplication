@@ -6,9 +6,9 @@ package fypapplication
 class WordCloud {
 
     String theWord
-    String wordCount
+    int wordCount
 
-    WordCloud(String word, String count) {
+    WordCloud(String word, int count) {
         this.theWord = word
         this.wordCount = count
     }
