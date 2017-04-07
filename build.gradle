@@ -124,7 +124,7 @@ bower {
     }
     'jqcloud2'('2.0.1') {
         source 'dist/jqcloud.min.css' >> '/stylesheet/'
-        source 'dist/jqcloud.min.js' >> '/javascript/'
+        source 'dist/jqcloud.min.js' >> '/angular/'
     }
 
 }
