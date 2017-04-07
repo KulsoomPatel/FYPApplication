@@ -1,13 +1,12 @@
 package fypapplication
 
 import grails.transaction.Transactional
-import sun.security.jca.GetInstance
 import weka.core.Attribute
 import weka.core.DenseInstance
 import weka.core.Instance
 import weka.core.Instances
 import weka.core.Stopwords
-import weka.core.converters.ArffSaver
+import weka.core.stemmers.SnowballStemmer
 import weka.filters.unsupervised.attribute.StringToWordVector
 
 @Transactional
@@ -20,7 +19,8 @@ class GenerateWordCloudService {
         //Write to file when stop words are removed
         File cleanestTweets = new File("cleanestTweets.txt")
         PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(cleanestTweets)))
-
+        SnowballStemmer stemmer = new SnowballStemmer()
+        stemmer.setStemmer("porter")
         try {
             Scanner console = new Scanner(theFile)
 
@@ -42,10 +42,10 @@ class GenerateWordCloudService {
 
                         if (!stopwords.is(word)) {
 
+                            word = stemmer.stem(word)
                             newLine = newLine + " " + word
                         }
                     }
-
                     printWriter.write(theIndustry + " ||| " + newLine)
                     printWriter.println()
                 }
@@ -66,6 +66,7 @@ class GenerateWordCloudService {
         ArrayList<String> theLines = new ArrayList<>()
         File cleanestTweets = new File("cleanestTweets.txt")
         File theArffFile = new File("tweets.arff")
+        File savedResults = new File("savedResults.arff")
         Instances instances
 
         try {
@@ -93,16 +94,22 @@ class GenerateWordCloudService {
                 instances.add(ins)
             }
 
-            ArffSaver saver = new ArffSaver();
+/*            ArffSaver saver = new ArffSaver();
             saver.setInstances(instances);
             saver.setFile(theArffFile)
-            saver.writeBatch()
+            saver.writeBatch()*/
+
+            StringToWordVector filter = new StringToWordVector()
+            filter.setInputFormat(instances)
+            filter.setDictionaryFileToSaveTo(savedResults)
+            filter.setOutputWordCounts(true)
+            filter.setTFTransform(true)
+            Instances dataFiltered = weka.filters.Filter.useFilter(instances, filter)
+
 
         } catch (IOException e) {
 
         }
-        String[] options = [""]
-        StringToWordVector filter = new StringToWordVector()
 
     }
 }
