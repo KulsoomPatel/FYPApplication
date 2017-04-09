@@ -57,6 +57,7 @@ function IndustryController(IndustryFactory, $location, SharedList) {
 
         SharedList.delete({action: 'deleteListData'}, function () {
 
+
             SharedList.show({theIndustries: vm.industries, action: 'insertListData'}, function () {
                 IndustryFactory.show({theIndustries: vm.industries, action: 'getIndustryData'}, function () {
 

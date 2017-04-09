@@ -22,6 +22,8 @@ function SentimentController(ProcessFactory, SharedList, $http) {
         });
     });
 
+    ProcessFactory.get({action: 'cleanWordClouds'}, function () { });
+
     vm.drawSentimentResults = function () {
         var processData = function (sentimentResults) {
             var results = [];
@@ -140,7 +142,10 @@ function SentimentController(ProcessFactory, SharedList, $http) {
         vm.employmentChartObject.type = "ColumnChart";
 
         vm.employmentChartObject.options = {
-            'title': 'Number of Vacancies and Salaries for ' + vm.selectedIndustry
+            'title': 'Number of Vacancies and Salaries for ' + vm.selectedIndustry,
+            series: {
+                0: {color: '#009900'}
+            }
         };
 
         vm.employmentChartObject.data = {
@@ -155,14 +160,12 @@ function SentimentController(ProcessFactory, SharedList, $http) {
 
     vm.cloudChartData = function () {
 
-        ProcessFactory.get({action: 'cleanWordClouds'}, function () {
-
             ProcessFactory.get({action: 'createWordCloud', theIndustry: vm.selectedIndustry}, function () {
 
                 ProcessFactory.list({action: 'getWordClouds'}, function (response) {
                     vm.wordCloud = response
                 })
             })
-        })
+
     };
 }

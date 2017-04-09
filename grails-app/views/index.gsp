@@ -13,7 +13,7 @@
 <div class="container" ng-app="fypapplication">
 
     <div class="page-header">
-        <h1 class="text-center">What's happening on Twitter? <small>Employment</small></h1>
+        <a href="#/"><h1 class="text-center">What's happening on Twitter? <small>Employment</small></h1></a>
     </div>
 
 
@@ -40,7 +40,6 @@
 <asset:javascript src="jqcloud2/jqcloud.js"/>
 <asset:javascript src="angular/ui-bootstrap-tpls.js"/>
 <asset:javascript src="angular/loading-bar.min.js"/>
-
 
 </body>
 </html>

@@ -3,7 +3,6 @@ import fypapplication.WordCloud
 model {
     WordCloud wordCloud
 }
-System.out.println "Model is $binding.variables"
 
 json {
     text wordCloud.theWord

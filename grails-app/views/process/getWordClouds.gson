@@ -4,6 +4,4 @@ model {
     ArrayList<WordCloud> wordCloudList
 }
 
-System.out.println "Model is $binding.variables"
-
 json tmpl.wordCloud(wordCloudList)

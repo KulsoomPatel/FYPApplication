@@ -126,6 +126,9 @@ bower {
         source 'angular-jqcloud.js' >> '/javascript/'
 
     }
+    'angular-timer'('1.3.5') {
+        source 'dist/angular-timer.js' >>'/angular/'
+    }
 
 }
 
