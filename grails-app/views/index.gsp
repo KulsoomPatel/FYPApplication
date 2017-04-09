@@ -40,6 +40,10 @@
 <asset:javascript src="jqcloud2/jqcloud.js"/>
 <asset:javascript src="angular/ui-bootstrap-tpls.js"/>
 <asset:javascript src="angular/loading-bar.min.js"/>
+<asset:javascript src="humanize-duration/humanize-duration.js"/>
+<asset:javascript src="moment/moment.js"/>
+<asset:javascript src="angular/angular-timer.js"/>
+
 
 </body>
 </html>

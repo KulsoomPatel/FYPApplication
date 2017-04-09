@@ -8,9 +8,9 @@ angular.module("fypapplication.industry")
 
 function SharedList(DomainServiceFactory) {
     return DomainServiceFactory('/myIndustries/:action', {action: '@action'},
-        {"show": {method: "GET"}},
+        {"show": {method: "GET", ignoreLoadingBar: true}},
         {"save": {method: "POST"}},
-        {"delete": {method: "DELETE"}}
+        {"delete": {method: "DELETE",  ignoreLoadingBar: true}}
     );
 }
 

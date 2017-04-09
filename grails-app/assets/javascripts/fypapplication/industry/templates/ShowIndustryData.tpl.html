@@ -1,3 +1,11 @@
+<timer countdown="120" interval="1000" ng-show="ctrl.showProgress">
+    <p> Remaining time :
+        {{minutes}} minute{{minutesS}} ({{progressBar}}%)</p>
+    <div class="progress progress-striped" style="height: 30px;">
+        <div class="progress-bar" style="min-width: 2em;width: {{progressBar}}%;"></div>
+    </div>
+</timer>
+
 <form class="form-horizontal">
     <div class="form-group">
         <label for="sectors" class="col-md-2 lead">Search Sectors:</label>

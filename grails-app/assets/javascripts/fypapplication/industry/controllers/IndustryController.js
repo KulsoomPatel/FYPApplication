@@ -11,6 +11,7 @@ function IndustryController(IndustryFactory, $location, SharedList) {
     var vm = this;
     vm.sectorList = [];
     vm.selected = undefined;
+    vm.showProgress = false;
 
     vm.showIndustryArea = false;
 
@@ -57,16 +58,14 @@ function IndustryController(IndustryFactory, $location, SharedList) {
 
         SharedList.delete({action: 'deleteListData'}, function () {
 
-
             SharedList.show({theIndustries: vm.industries, action: 'insertListData'}, function () {
+                vm.showProgress = true;
+
                 IndustryFactory.show({theIndustries: vm.industries, action: 'getIndustryData'}, function () {
 
                     $location.path("/processData/");
                 })
             });
         });
-
-
     };
-
 }

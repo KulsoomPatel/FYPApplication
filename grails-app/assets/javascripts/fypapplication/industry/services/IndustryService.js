@@ -6,7 +6,7 @@ angular.module("fypapplication.industry")
 
 function IndustryFactory(DomainServiceFactory) {
     return DomainServiceFactory('/industry/:action', {action: '@action'},
-        {"show": {method: "GET"}},
+        {"show": {method: "GET",  ignoreLoadingBar: true}},
         {"save": {method: "POST"}},
         {"delete": {method: "DELETE"}}
     );
