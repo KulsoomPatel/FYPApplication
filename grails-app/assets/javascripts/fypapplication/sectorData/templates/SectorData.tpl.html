@@ -6,10 +6,11 @@
             <div class="panel-heading">Current Sectors</div>
             <div class="panel-body" ng-init="ctrl.listSector()">
 
-                <ul ng-repeat="sector in ctrl.sectorList">
+                <ul ng-repeat="sector in ctrl.sectorList | filter:search | offset: (ctrl.currentPage - 1) * ctrl.itemsPerPage | limitTo: ctrl.itemsPerPage">
                     <li> {{sector.name}}</li>
                 </ul>
-
+                <ul uib-pagination total-items="ctrl.totalItems" items-per-page="ctrl.itemsPerPage"
+                    ng-model="ctrl.currentPage"></ul>
             </div>
         </div>
 
@@ -34,7 +35,6 @@
                 </form>
             </div>
         </div>
-
     </div>
 
     <div class="col-md-4">

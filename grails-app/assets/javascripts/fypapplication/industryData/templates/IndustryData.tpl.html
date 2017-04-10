@@ -23,12 +23,11 @@
             <div class="panel-body">
 
                 <ul ng-repeat="industry in ctrl.industryList">
-
-
                     <li>{{industry.name}}</li>
-
-
                 </ul>
+
+                <ul uib-pagination total-items="ctrl.totalItems" items-per-page="ctrl.itemsPerPage"
+                    ng-model="ctrl.currentPage"></ul>
             </div>
         </div>
     </div>

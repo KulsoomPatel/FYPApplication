@@ -2,15 +2,28 @@
  * Created by Kulsoom on 09/02/2017.
  */
 angular.module("fypapplication.sectordata")
-    .controller("SectorDataController", SectorDataController);
+    .controller("SectorDataController", SectorDataController)
+    .filter("offset", offset);
+
+
+function offset() {
+    return function (input, start) {
+        return input.slice(start);
+    };
+}
 
 function SectorDataController(SectorDataFactory, IndustryFactory) {
 
     var vm = this;
+    vm.currentPage = 1;
+    vm.itemsPerPage = 2;
+    vm.sectorList = [];
 
     vm.listSector = function () {
-        IndustryFactory.list({action: 'getSectorList'}, function (saveMessage) {
-            vm.sectorList = saveMessage;
+        IndustryFactory.list({action: 'getSectorList'}, function (response) {
+            vm.sectorList = response;
+            vm.totalItems = vm.sectorList.length;
+
         });
     };
 
