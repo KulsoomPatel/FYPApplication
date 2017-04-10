@@ -64,6 +64,8 @@ function IndustryController(IndustryFactory, $location, SharedList) {
                 IndustryFactory.show({theIndustries: vm.industries, action: 'getIndustryData'}, function () {
 
                     $location.path("/processData/");
+                }, function () {
+                    $location.path("/error/");
                 })
             });
         });

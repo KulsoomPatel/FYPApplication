@@ -25,15 +25,13 @@ class SectorDataService {
 
         String message
 
-        if (newSector != null) {
-            if (newSector.validate()) {
-                newSector.save(flush: true)
-                message = newSector.name + " has been saved"
-            } else {
-                message = "Unable to save " + newSector.name
-            }
-        } else {
+        if (newSector.validate()) {
+            newSector.save(flush: true)
+            message = newSector.name + " has been saved"
+        } else if (newSector.name == null) {
             message = "Insert a Sector"
+        } else {
+            message = "Unable to save " + newSector.name
         }
 
         return message

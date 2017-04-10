@@ -22,7 +22,8 @@ function SentimentController(ProcessFactory, SharedList, $http) {
         });
     });
 
-    ProcessFactory.get({action: 'cleanWordClouds'}, function () { });
+    ProcessFactory.get({action: 'cleanWordClouds'}, function () {
+    });
 
     vm.drawSentimentResults = function () {
         var processData = function (sentimentResults) {
@@ -92,10 +93,25 @@ function SentimentController(ProcessFactory, SharedList, $http) {
 
             var tableData = [];
 
-            var myArray = theData.month;
 
-            angular.forEach(myArray, function (key, value) {
-                tableData.push({c: [{v: value}, {v: key}]})
+            //Array into a new format so it can be sorted
+            var makeNewArray = function () {
+
+                var formattedData = [];
+                angular.forEach(theData.month, function (key, value) {
+                    formattedData.push({date: value, salary: key})
+                });
+                return formattedData;
+            };
+
+            var newArray = makeNewArray();
+
+            newArray.sort(function (a, b) {
+                return (a.date < b.date) ? -1 : ((a.date > b.date) ? 1 : 0);
+            });
+
+            angular.forEach(newArray, function (obj) {
+                tableData.push({c: [{v: obj.date}, {v: obj.salary}]})
             });
 
             return tableData;
@@ -160,12 +176,12 @@ function SentimentController(ProcessFactory, SharedList, $http) {
 
     vm.cloudChartData = function () {
 
-            ProcessFactory.get({action: 'createWordCloud', theIndustry: vm.selectedIndustry}, function () {
+        ProcessFactory.get({action: 'createWordCloud', theIndustry: vm.selectedIndustry}, function () {
 
-                ProcessFactory.list({action: 'getWordClouds'}, function (response) {
-                    vm.wordCloud = response
-                })
+            ProcessFactory.list({action: 'getWordClouds'}, function (response) {
+                vm.wordCloud = response
             })
+        })
 
     };
 }
