@@ -7,7 +7,8 @@ class SectorDataService {
 
     def getSectors() {
 
-        def sectors = Sector.list()
+        def sectors = Sector.list(sort: "name")
+
         return sectors
     }
 

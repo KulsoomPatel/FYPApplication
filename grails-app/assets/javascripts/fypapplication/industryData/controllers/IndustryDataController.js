@@ -3,7 +3,15 @@
  */
 
 angular.module("fypapplication.industrydata")
-    .controller("IndustryDataController", IndustryDataController);
+    .controller("IndustryDataController", IndustryDataController)
+    .filter("offset", offset);
+
+
+function offset() {
+    return function (input, start) {
+        return input.slice(start);
+    };
+}
 
 function IndustryDataController(IndustryFactory, SectorDataFactory) {
     var vm = this;
@@ -12,9 +20,12 @@ function IndustryDataController(IndustryFactory, SectorDataFactory) {
     vm.showIndustryArea = false;
     vm.industry = undefined;
     vm.industryName = undefined;
+    vm.currentPage = 1;
+    vm.itemsPerPage = 2;
 
     IndustryFactory.list({action: 'getSectorList'}, function (response) {
         vm.sectorList = response;
+        vm.totalItems = vm.sectorList.length;
     });
 
     vm.getIndustryList = function (sectorName) {

@@ -10,7 +10,7 @@ class IndustryDataService {
         def query = Industry.where {
             sector.name == sectorName
         }
-        def industries = query.list()
+        def industries = query.list(sort: "name")
 
         return industries
     }
