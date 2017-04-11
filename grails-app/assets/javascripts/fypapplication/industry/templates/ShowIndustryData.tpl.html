@@ -1,4 +1,4 @@
-<timer countdown="120" interval="1000" ng-show="ctrl.showProgress">
+<timer countdown="600" interval="1000" ng-show="ctrl.showProgress">
     <p> Remaining time :
         {{minutes}} minute{{minutesS}} ({{progressBar}}%)</p>
     <div class="progress progress-striped" style="height: 30px;">
@@ -12,7 +12,7 @@
         <div class="col-md-10">
             <input name="sectors" id="sectors" type="text" placeholder="Enter a Sector" ng-model="ctrl.selected"
                    uib-typeahead="sector.name for sector in ctrl.sectorList| filter:$viewValue | limitTo:8"
-                   class="form-control">
+                   class="form-control" autocomplete="off">
         </div>
     </div>
 

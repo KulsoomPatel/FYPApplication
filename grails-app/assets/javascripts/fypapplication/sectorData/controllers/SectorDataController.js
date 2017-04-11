@@ -16,7 +16,7 @@ function SectorDataController(SectorDataFactory, IndustryFactory) {
 
     var vm = this;
     vm.currentPage = 1;
-    vm.itemsPerPage = 2;
+    vm.itemsPerPage = 5;
     vm.sectorList = [];
 
     vm.listSector = function () {

@@ -4,7 +4,7 @@
         <div class="col-md-10">
             <input name="sectors" id="sectors" type="text" placeholder="Enter a Sector" ng-model="ctrl.selected"
                    uib-typeahead="sector.name for sector in ctrl.sectorList | filter:$viewValue | limitTo:8"
-                   class="form-control">
+                   class="form-control" autocomplete="off">
         </div>
     </div>
 
@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <label for="insertIndustry">Industry</label>
                         <input type="text" class="form-control" id="insertIndustry" ng-model="ctrl.industry.name"
-                               placeholder="Insert Industry">
+                               placeholder="Insert Industry" autocomplete="off">
                     </div>
 
                     <button type="submit" class="btn btn-default center-block" ng-click="ctrl.getTheSector()">Save

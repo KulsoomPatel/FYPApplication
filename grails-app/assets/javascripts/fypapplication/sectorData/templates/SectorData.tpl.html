@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label for="insertSector">Sector</label>
                     <input type="text" class="form-control" id="insertSector" ng-model="ctrl.sector.name"
-                           placeholder="Insert Sector">
+                           placeholder="Insert Sector" autocomplete="off">
                 </div>
 
                 <button type="submit" class="btn btn-default center-block" ng-click="ctrl.saveTheSector()">Save
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <label for="deleteSector">Sector</label>
                     <input type="text" class="form-control" id="deleteSector" ng-model="ctrl.sectorName"
-                           placeholder="Delete Sector">
+                           placeholder="Delete Sector" autocomplete="off">
                 </div>
 
                 <button type="submit" class="btn btn-default center-block" ng-click="ctrl.getSectorIndustries()">

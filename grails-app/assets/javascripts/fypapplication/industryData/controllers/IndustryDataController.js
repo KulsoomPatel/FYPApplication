@@ -21,7 +21,7 @@ function IndustryDataController(IndustryFactory, SectorDataFactory) {
     vm.industry = undefined;
     vm.industryName = undefined;
     vm.currentPage = 1;
-    vm.itemsPerPage = 2;
+    vm.itemsPerPage = 5;
 
     IndustryFactory.list({action: 'getSectorList'}, function (response) {
         vm.sectorList = response;
