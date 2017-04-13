@@ -46,11 +46,11 @@ class SectorDataService {
                 name == sectorName
             }.get()
 
-            if (theSector != null) {
+            if (theSector == null) {
+                message = "Unable to delete " + sectorName
+            } else {
                 theSector.delete(flush: true)
                 message = theSector.name + " has been deleted"
-            } else {
-                message = "Unable to delete " + theSector.name
             }
 
         } else {
