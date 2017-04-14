@@ -3,9 +3,9 @@
  */
 
 angular.module("fypapplication.industry")
-    .controller("IndustryController", ['IndustryFactory', '$location', 'SharedList', IndustryController]);
+    .controller("IndustryController", ['IndustryFactory', '$location', '$localStorage', IndustryController]);
 
-function IndustryController(IndustryFactory, $location, SharedList) {
+function IndustryController(IndustryFactory, $location, $localStorage) {
 
     //Pass a list and post these values to begin
     var vm = this;
@@ -56,18 +56,20 @@ function IndustryController(IndustryFactory, $location, SharedList) {
 
     vm.getTwitterData = function () {
 
-        SharedList.delete({action: 'deleteListData'}, function () {
+        $localStorage.$reset({
+            myIndustries: vm.industries,
+            theDate: new Date().toDateString()
+    });
 
-            SharedList.show({theIndustries: vm.industries, action: 'insertListData'}, function () {
-                vm.showProgress = true;
+        vm.showProgress = true;
 
-                IndustryFactory.show({theIndustries: vm.industries, action: 'getIndustryData'}, function () {
+        IndustryFactory.show({theIndustries: vm.industries, action: 'getIndustryData'}, function () {
 
-                    $location.path("/processData/");
-                }, function () {
-                    $location.path("/error/");
-                })
-            });
-        });
+            $location.path("/processData/");
+        }, function () {
+            $location.path("/error/");
+        })
+
+
     };
 }

@@ -6,6 +6,7 @@
 //= require /angular/ui-bootstrap-tpls
 //= require /angular/loading-bar
 //= require /javascript/ng-google-chart
+//= require /angular/ngStorage
 //= require /fypapplication/core/fypapplication.core
 //= require /fypapplication/index/fypapplication.index
 //= require /fypapplication/industry/fypapplication.industry
@@ -23,6 +24,7 @@ angular.module("fypapplication", [
     "ngAnimate",
     "ngTouch",
     "angular-loading-bar",
-    "googlechart"
+    "googlechart",
+    "ngStorage"
 
 ]);

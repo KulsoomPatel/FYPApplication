@@ -3,14 +3,14 @@
  */
 
 angular.module("fypapplication.industry")
-    .controller("ProcessController", ["SharedList", "IndustryFactory", "ProcessFactory", "$location", ProcessController]);
+    .controller("ProcessController", ["$localStorage", "IndustryFactory", "ProcessFactory", "$location", ProcessController]);
 
-function ProcessController(SharedList, IndustryFactory, ProcessFactory, $location) {
+function ProcessController($localStorage, IndustryFactory, ProcessFactory, $location) {
 
     var vm = this;
 
-    SharedList.show({action: 'getList'}, function (response) {
-        vm.theIndustries = response.savedIndustries;
+
+        vm.theIndustries = $localStorage.myIndustries;
 
         IndustryFactory.show({theIndustries: vm.theIndustries, action: 'displayData'}, function (response) {
                 vm.theData = response.integerList;
@@ -18,7 +18,7 @@ function ProcessController(SharedList, IndustryFactory, ProcessFactory, $locatio
             }
         );
 
-    });
+
 
     vm.theData = [];
 

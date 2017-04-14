@@ -70,7 +70,7 @@ class LiveTwitterDataService {
 
         stream.filter(fq)
         try {
-            Thread.sleep(10 * 60 * 1000); // just sleep on the caller thread
+            Thread.sleep(1 * 60 * 1000); // just sleep on the caller thread
         }
         catch (InterruptedException e) {
             // ignore

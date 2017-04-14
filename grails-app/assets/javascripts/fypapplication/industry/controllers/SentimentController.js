@@ -3,23 +3,21 @@
  */
 
 angular.module("fypapplication.industry")
-    .controller("SentimentController", ["ProcessFactory", "SharedList", "$http", SentimentController]);
+    .controller("SentimentController", ["ProcessFactory", "$localStorage", "$http", SentimentController]);
 
-function SentimentController(ProcessFactory, SharedList, $http) {
+function SentimentController(ProcessFactory, $localStorage, $http) {
 
     var vm = this;
     vm.selectedIndustry = undefined;
     vm.displayChart = false;
 
-    SharedList.show({action: 'getList'}, function (response) {
-        vm.theIndustries = response.savedIndustries;
+    vm.displayDate = $localStorage.theDate;
+    vm.theIndustries = $localStorage.myIndustries;
 
-        ProcessFactory.list({theIndustries: vm.theIndustries, action: 'displaySentiment'}, function (response) {
-            vm.sentimentResults = response;
-            vm.drawSentimentResults()
+    ProcessFactory.list({theIndustries: vm.theIndustries, action: 'displaySentiment'}, function (response) {
+        vm.sentimentResults = response;
+        vm.drawSentimentResults()
 
-
-        });
     });
 
     ProcessFactory.get({action: 'cleanWordClouds'}, function () {
