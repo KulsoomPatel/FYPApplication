@@ -3,9 +3,9 @@
  */
 
 angular.module("fypapplication.industry")
-    .controller("SentimentController", ["ProcessFactory", "SentimentFactory", "$localStorage", "PreviousEmpFactory", "$http", SentimentController]);
+    .controller("SentimentController", ["ProcessFactory", "SentimentFactory", "$localStorage", "PreviousEmpFactory","HistogramFactory", "$http", SentimentController]);
 
-function SentimentController(ProcessFactory, SentimentFactory, $localStorage, PreviousEmpFactory, $http) {
+function SentimentController(ProcessFactory, SentimentFactory, $localStorage, PreviousEmpFactory,HistogramFactory, $http) {
 
     var vm = this;
     vm.selectedIndustry = undefined;
@@ -81,17 +81,6 @@ function SentimentController(ProcessFactory, SentimentFactory, $localStorage, Pr
 
     vm.drawHistogram = function () {
 
-        vm.processData = function (results) {
-
-            var theData = [];
-
-            angular.forEach(results.histogram, function (key, value) {
-                theData.push({c: [{v: value}, {v: key}]})
-            });
-
-            return theData;
-        };
-
         vm.employmentChartObject = {};
 
         vm.employmentChartObject.type = "ColumnChart";
@@ -107,7 +96,7 @@ function SentimentController(ProcessFactory, SentimentFactory, $localStorage, Pr
             "cols": [
                 {id: "v", label: "Salary", type: "number"},
                 {id: "s", label: "Vacancies", type: "number"}
-            ], "rows": vm.processData(vm.employmentResult)
+            ], "rows": HistogramFactory(vm.employmentResult)
         };
 
     };
