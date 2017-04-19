@@ -3,36 +3,25 @@
  */
 
 angular.module("fypapplication.industry")
-    .controller("ProcessController", ["$localStorage", "IndustryFactory", "ProcessFactory", "$location", ProcessController]);
+    .controller("ProcessController", ["$localStorage", "IndustryFactory", "ProcessFactory", "PieChartFactory", "$location", ProcessController]);
 
-function ProcessController($localStorage, IndustryFactory, ProcessFactory, $location) {
+function ProcessController($localStorage, IndustryFactory, ProcessFactory, PieChartFactory, $location) {
 
     var vm = this;
 
 
-        vm.theIndustries = $localStorage.myIndustries;
+    vm.theIndustries = $localStorage.myIndustries;
 
-        IndustryFactory.show({theIndustries: vm.theIndustries, action: 'displayData'}, function (response) {
-                vm.theData = response.integerList;
-                vm.drawChart();
-            }
-        );
-
+    IndustryFactory.show({theIndustries: vm.theIndustries, action: 'displayData'}, function (response) {
+            vm.theData = response.integerList;
+            vm.drawChart();
+        }
+    );
 
 
     vm.theData = [];
 
     vm.drawChart = function () {
-
-        vm.processData = function (theIndustries, count) {
-
-            var chartData = [];
-
-            for (i = 0; i < theIndustries.length; i++) {
-                chartData.push({c: [{v: theIndustries[i]}, {v: count[i]}]});
-            }
-            return chartData;
-        };
 
         vm.myChartObject = {};
         vm.myChartObject.type = 'PieChart';
@@ -44,9 +33,8 @@ function ProcessController($localStorage, IndustryFactory, ProcessFactory, $loca
             "cols": [
                 {id: "I", label: "Industry", type: "string"},
                 {id: "N", label: "Counts", type: "number"}
-            ], "rows": vm.processData(vm.theIndustries, vm.theData)
+            ], "rows": PieChartFactory(vm.theIndustries, vm.theData)
         };
-
     };
 
     vm.getSentiment = function () {
