@@ -3,9 +3,9 @@
  */
 
 angular.module("fypapplication.industry")
-    .controller("SentimentController", ["ProcessFactory", "SentimentService", "$localStorage", "$http", SentimentController]);
+    .controller("SentimentController", ["ProcessFactory", "SentimentFactory", "$localStorage", "PreviousEmpFactory", "$http", SentimentController]);
 
-function SentimentController(ProcessFactory, SentimentService, $localStorage, $http) {
+function SentimentController(ProcessFactory, SentimentFactory, $localStorage, PreviousEmpFactory, $http) {
 
     var vm = this;
     vm.selectedIndustry = undefined;
@@ -29,7 +29,7 @@ function SentimentController(ProcessFactory, SentimentService, $localStorage, $h
 
         vm.myChartObject.type = "BarChart";
 
-        vm.myChartObject.data = SentimentService(vm.sentimentResults);
+        vm.myChartObject.data = SentimentFactory(vm.sentimentResults, vm.theIndustries);
 
         vm.myChartObject.options = {
             'title': 'Sentiment Analysis of the Industries',
@@ -56,34 +56,6 @@ function SentimentController(ProcessFactory, SentimentService, $localStorage, $h
     vm.drawPreviousEmpResults = function () {
 
 
-        vm.processData = function (theData) {
-
-            var tableData = [];
-
-
-            //Array into a new format so it can be sorted
-            var makeNewArray = function () {
-
-                var formattedData = [];
-                angular.forEach(theData.month, function (key, value) {
-                    formattedData.push({date: value, salary: key})
-                });
-                return formattedData;
-            };
-
-            var newArray = makeNewArray();
-
-            newArray.sort(function (a, b) {
-                return (a.date < b.date) ? -1 : ((a.date > b.date) ? 1 : 0);
-            });
-
-            angular.forEach(newArray, function (obj) {
-                tableData.push({c: [{v: obj.date}, {v: obj.salary}]})
-            });
-
-            return tableData;
-        };
-
         vm.pastEmploymentChartObject = {};
 
         vm.pastEmploymentChartObject.type = "LineChart";
@@ -101,7 +73,7 @@ function SentimentController(ProcessFactory, SentimentService, $localStorage, $h
             "cols": [
                 {id: "v", label: "Month", type: "string"},
                 {id: "s", label: "Salary", type: "number"}
-            ], "rows": vm.processData(vm.previousEmploymentStats)
+            ], "rows": PreviousEmpFactory(vm.previousEmploymentStats)
         };
 
         vm.cloudChartData();

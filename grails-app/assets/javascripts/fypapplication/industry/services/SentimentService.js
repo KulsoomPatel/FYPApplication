@@ -3,7 +3,7 @@
  */
 angular.module("fypapplication.industry")
     .factory("SentimentFactory", function () {
-            var SentimentFactory = function (sentimentResults) {
+            var SentimentFactory = function (sentimentResults, theIndustries) {
 
                 var results = [];
                 var industryTitle = ['Industry'];
@@ -22,7 +22,7 @@ angular.module("fypapplication.industry")
                     var sentimentValues = [eachResult.sentimentType];
                     angular.forEach(eachResult.industryCount, function (key, value) {
 
-                        angular.forEach(vm.theIndustries, function (industry) {
+                        angular.forEach(theIndustries, function (industry) {
                             if (industry === value) {
                                 sentimentValues.push(key);
                             }
