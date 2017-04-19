@@ -3,9 +3,9 @@
  */
 
 angular.module("fypapplication.industry")
-    .controller("SentimentController", ["ProcessFactory", "$localStorage", "$http", SentimentController]);
+    .controller("SentimentController", ["ProcessFactory", "SentimentService", "$localStorage", "$http", SentimentController]);
 
-function SentimentController(ProcessFactory, $localStorage, $http) {
+function SentimentController(ProcessFactory, SentimentService, $localStorage, $http) {
 
     var vm = this;
     vm.selectedIndustry = undefined;
@@ -24,43 +24,12 @@ function SentimentController(ProcessFactory, $localStorage, $http) {
     });
 
     vm.drawSentimentResults = function () {
-        var processData = function (sentimentResults) {
-            var results = [];
-            var industryTitle = ['Industry'];
-
-            //put all of the industries as the chart title
-            angular.forEach(sentimentResults[0].industryCount, function (key, value) {
-                industryTitle.push(value)
-            });
-
-            industryTitle.push({role: 'annotation'});
-            results.push(industryTitle);
-
-            for (i = 0; i < sentimentResults.length; i++) {
-                var eachResult = sentimentResults[i];
-
-                var sentimentValues = [eachResult.sentimentType];
-                angular.forEach(eachResult.industryCount, function (key, value) {
-
-                    angular.forEach(vm.theIndustries, function (industry) {
-                        if (industry === value) {
-                            sentimentValues.push(key);
-                        }
-                    });
-
-                });
-                sentimentValues.push(' ');
-                results.push(sentimentValues)
-            }
-
-            return results;
-        };
 
         vm.myChartObject = {};
 
         vm.myChartObject.type = "BarChart";
 
-        vm.myChartObject.data = processData(vm.sentimentResults);
+        vm.myChartObject.data = SentimentService(vm.sentimentResults);
 
         vm.myChartObject.options = {
             'title': 'Sentiment Analysis of the Industries',
