@@ -3,9 +3,9 @@
  */
 
 angular.module("fypapplication.industry")
-    .controller("SentimentController", ["ProcessFactory", "SentimentFactory", "$localStorage", "PreviousEmpFactory","HistogramFactory", "$http", SentimentController]);
+    .controller("SentimentController", ["ProcessFactory", "SentimentFactory", "$localStorage", "PreviousEmpFactory", "HistogramFactory", "EmpResultsFactory","HistoricalResultsFactory", SentimentController]);
 
-function SentimentController(ProcessFactory, SentimentFactory, $localStorage, PreviousEmpFactory,HistogramFactory, $http) {
+function SentimentController(ProcessFactory, SentimentFactory, $localStorage, PreviousEmpFactory, HistogramFactory, EmpResultsFactory, HistoricalResultsFactory) {
 
     var vm = this;
     vm.selectedIndustry = undefined;
@@ -40,13 +40,13 @@ function SentimentController(ProcessFactory, SentimentFactory, $localStorage, Pr
     vm.employmentStats = function () {
 
         vm.displayChart = true;
-        $http.get("http://api.adzuna.com:80/v1/api/jobs/gb/histogram?app_id=fac32a55&app_key=24eb5252096a41c8156ba154c1fe7e73&what=" + vm.selectedIndustry)
+        EmpResultsFactory(vm.selectedIndustry)
             .then(function (response) {
                 vm.employmentResult = response.data;
                 vm.drawHistogram();
             });
 
-        $http.get("http://api.adzuna.com:80/v1/api/jobs/gb/history?app_id=fac32a55&app_key=24eb5252096a41c8156ba154c1fe7e73&what=" + vm.selectedIndustry + "&months=6")
+        HistoricalResultsFactory(vm.selectedIndustry)
             .then(function (response) {
                 vm.previousEmploymentStats = response.data;
                 vm.drawPreviousEmpResults();

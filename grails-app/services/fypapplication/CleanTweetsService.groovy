@@ -21,6 +21,7 @@ class CleanTweetsService {
             Scanner console = new Scanner(dirtyTweets)
 
             PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(cleanTweets)))
+            //to save only the tweets which 
             LinkedHashSet<String> ln = new LinkedHashSet<String>()
 
             while (console.hasNextLine()) {

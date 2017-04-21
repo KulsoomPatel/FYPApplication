@@ -32,6 +32,7 @@ class LiveTwitterDataService {
             @Override
             void onStatus(Status status) {
 
+                //note down the language of the tweet as only english tweets will be considered
                 printWriter.write(status.getLang() + "|||" + status.getText())
                 printWriter.println()
 
@@ -68,9 +69,10 @@ class LiveTwitterDataService {
         FilterQuery fq = new FilterQuery()
         fq.track(theIndustries)
 
+
         stream.filter(fq)
         try {
-            Thread.sleep(2 * 60 * 1000); // just sleep on the caller thread
+            Thread.sleep(60 * 60 * 1000); // just sleep on the caller thread. Stop the execution on the current thread
         }
         catch (InterruptedException e) {
             // ignore
@@ -82,6 +84,7 @@ class LiveTwitterDataService {
 
     def processData(String type) {
 
+        //categorising the dataset
         int count = 0;
 
         File file = new File("result.txt")

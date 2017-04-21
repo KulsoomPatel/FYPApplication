@@ -91,25 +91,25 @@ dependencies {
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
 }
 bower {
-    'angular'('1.4.x') {
+    'angular'('1.5.x') {
         source 'angular.js'
     }
-    'angular-resource'('1.4.x') {
+    'angular-resource'('1.5.x') {
         source 'angular-resource.js' >> '/angular/'
     }
-    'angular-mocks'('1.4.x') {
+    'angular-mocks'('1.5.x') {
         source 'angular-mocks.js' >> '/angular/'
     }
     'angular-bootstrap'('1.1.x') {
         source 'ui-bootstrap-tpls.js' >> '/angular/'
     }
-    'angular-route'('1.4.x') {
+    'angular-route'('1.5.x') {
         source 'angular-route.js' >> '/angular/'
     }
-    'angular-animate'('1.4.x') {
+    'angular-animate'('1.5.x') {
         source 'angular-animate.js' >> '/angular/'
     }
-    'angular-touch'('1.4.x') {
+    'angular-touch'('1.5.x') {
         source 'angular-touch.js' >> '/angular/'
     }
     'angular-loading-bar' {
