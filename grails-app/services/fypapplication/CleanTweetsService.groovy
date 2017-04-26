@@ -21,7 +21,7 @@ class CleanTweetsService {
             Scanner console = new Scanner(dirtyTweets)
 
             PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(cleanTweets)))
-            //to save only the tweets which 
+            //to remove duplicate tweets
             LinkedHashSet<String> ln = new LinkedHashSet<String>()
 
             while (console.hasNextLine()) {
@@ -33,6 +33,7 @@ class CleanTweetsService {
                 if (splitter[0].equals("en")) {
 
                     line = line.replaceFirst("en", "")
+                    //regex to remove URL's
 
                     String urlIdentifier = "((http|ftp|https):\\/\\/)?[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?"
 
@@ -49,6 +50,7 @@ class CleanTweetsService {
 
             ln.each { line ->
 
+                //annotate the tweet with the industry it is about
                 for (String industry : theIndustries) {
                     if (line.contains(industry)) {
                         printWriter.write(industry + "|||" + line.toLowerCase())
