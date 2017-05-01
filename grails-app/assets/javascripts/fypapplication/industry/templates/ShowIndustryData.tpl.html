@@ -17,7 +17,7 @@
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-lg center-block" ng-click="ctrl.getIndustryList(ctrl.selected)">Search
+        <button type="submit" class="btn btn-lg center-block" ng-click="ctrl.getIndustryList(ctrl.selected)" ng-disabled="ctrl.disable">Search
             Sector
         </button>
 
@@ -58,7 +58,8 @@
 </div>
 
 
-<button type="button" class="btn btn-lg center-block" ng-show="ctrl.count > 0" ng-click="ctrl.getTwitterData()">Get
+<button type="button" class="btn btn-lg center-block" ng-show="ctrl.count > 0"
+        ng-click="ctrl.getTwitterData()" ng-disabled="ctrl.disable">Get
     Twitter Data
 </button>
 

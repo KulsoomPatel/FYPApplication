@@ -25,9 +25,10 @@
                 <ul ng-repeat="industry in ctrl.industryList | filter:search | offset: (ctrl.currentPage - 1) * ctrl.itemsPerPage | limitTo: ctrl.itemsPerPage">
                     <li>{{industry.name}}</li>
                 </ul>
-
-                <ul uib-pagination total-items="ctrl.totalItems" items-per-page="ctrl.itemsPerPage"
-                    ng-model="ctrl.currentPage"></ul>
+                <div class="text-center">
+                    <ul uib-pagination total-items="ctrl.totalItems" items-per-page="ctrl.itemsPerPage"
+                        ng-model="ctrl.currentPage" max-size="5"></ul>
+                </div>
             </div>
         </div>
     </div>

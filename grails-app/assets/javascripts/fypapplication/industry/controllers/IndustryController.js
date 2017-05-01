@@ -12,6 +12,7 @@ function IndustryController(IndustryFactory, $location, $localStorage) {
     vm.sectorList = [];
     vm.selected = undefined;
     vm.showProgress = false;
+    vm.disable = false;
 
     vm.showIndustryArea = false;
 
@@ -55,6 +56,7 @@ function IndustryController(IndustryFactory, $location, $localStorage) {
     };
 
     vm.getTwitterData = function () {
+        vm.disable = true;
 
         $localStorage.$reset({
             myIndustries: vm.industries,

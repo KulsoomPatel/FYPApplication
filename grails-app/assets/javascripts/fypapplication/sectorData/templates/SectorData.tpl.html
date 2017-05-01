@@ -10,64 +10,66 @@
                     <li> {{sector.name}}</li>
                 </ul>
 
-                <ul uib-pagination total-items="ctrl.totalItems" items-per-page="ctrl.itemsPerPage"
-                    ng-model="ctrl.currentPage"></ul>
+                <div class="text-center">
+                    <ul uib-pagination total-items="ctrl.totalItems" items-per-page="ctrl.itemsPerPage"
+                        ng-model="ctrl.currentPage" max-size="5"></ul>
+                </div>
             </div>
         </div>
     </div>
 
-<div class="col-md-4">
+    <div class="col-md-4">
 
-    <div class="panel panel-info">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Insert Sector</div>
-        <div class="panel-body">
-            <p> {{ctrl.responseMessage}}</p>
-            <form>
-                <div class="form-group">
-                    <label for="insertSector">Sector</label>
-                    <input type="text" class="form-control" id="insertSector" ng-model="ctrl.sector.name"
-                           placeholder="Insert Sector" autocomplete="off">
-                </div>
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Insert Sector</div>
+            <div class="panel-body">
+                <p> {{ctrl.responseMessage}}</p>
+                <form>
+                    <div class="form-group">
+                        <label for="insertSector">Sector</label>
+                        <input type="text" class="form-control" id="insertSector" ng-model="ctrl.sector.name"
+                               placeholder="Insert Sector" autocomplete="off">
+                    </div>
 
-                <button type="submit" class="btn btn-default center-block" ng-click="ctrl.saveTheSector()">Save
-                    Sector
-                </button>
-            </form>
+                    <button type="submit" class="btn btn-default center-block" ng-click="ctrl.saveTheSector()">Save
+                        Sector
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="col-md-4">
-    <div class="panel panel-warning">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Delete Sector</div>
-        <div class="panel-body">
-            <p> {{ctrl.deleteMessage}}</p>
-            <form>
-                <div class="form-group">
-                    <label for="deleteSector">Sector</label>
-                    <input type="text" class="form-control" id="deleteSector" ng-model="ctrl.sectorName"
-                           placeholder="Delete Sector" autocomplete="off">
-                </div>
+    <div class="col-md-4">
+        <div class="panel panel-warning">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Delete Sector</div>
+            <div class="panel-body">
+                <p> {{ctrl.deleteMessage}}</p>
+                <form>
+                    <div class="form-group">
+                        <label for="deleteSector">Sector</label>
+                        <input type="text" class="form-control" id="deleteSector" ng-model="ctrl.sectorName"
+                               placeholder="Delete Sector" autocomplete="off">
+                    </div>
 
-                <button type="submit" class="btn btn-default center-block" ng-click="ctrl.getSectorIndustries()">
-                    View Industries
-                </button>
-                <br>
-                <button type="submit" class="btn btn-danger center-block" ng-click="ctrl.deleteSector()">
-                    Delete Sector and Industries
-                </button>
+                    <button type="submit" class="btn btn-default center-block" ng-click="ctrl.getSectorIndustries()">
+                        View Industries
+                    </button>
+                    <br>
+                    <button type="submit" class="btn btn-danger center-block" ng-click="ctrl.deleteSector()">
+                        Delete Sector and Industries
+                    </button>
 
-            </form>
+                </form>
+            </div>
+
+            <!-- List group -->
+            <ul class="list-group" ng-repeat="industry in ctrl.industryList">
+
+                <li class="list-group-item">{{industry.name}}</li>
+            </ul>
         </div>
-
-        <!-- List group -->
-        <ul class="list-group" ng-repeat="industry in ctrl.industryList">
-
-            <li class="list-group-item">{{industry.name}}</li>
-        </ul>
     </div>
-</div>
 </div>
 
